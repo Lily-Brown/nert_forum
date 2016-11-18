@@ -1,0 +1,8 @@
+<div>
+  <p>
+    <%= @post.title %></br>
+    <%= link_to @post.owner.name, user_path(@post.owner) %>: <%= @post.owner.neighborhood %></br>
+    <%= @post.created_at %>
+  </p>
+  <p><%= @post.text_body %></p>
+</div>
