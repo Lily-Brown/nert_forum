@@ -15,6 +15,7 @@ See this project live [LINK HERE](#)
 - Ruby on Rails
 - Javascript
 - JQuery
+- [Rspec](https://github.com/rspec/rspec-rails)
 - [Devise](https://github.com/plataformatec/devise) for Auth
 - [Materialize](http://materializecss.com)
 - [Paperclip](https://github.com/thoughtbot/paperclip)
