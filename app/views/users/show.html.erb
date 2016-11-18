@@ -1,7 +1,13 @@
 <div>
   <p>
-    <h1><%= @user.name %></h1>
-    <%= image_tag @user.image %></br>
+    <% if @user.name =! nil %>
+      <h1>No Name Saved</h1>
+    <% else %>
+      <h1><%= @user.name %></h1>
+    <% end %>
+    <% if @user.image =! nil %>
+      <%= image_tag @user.image %></br>
+    <% end %>
     Neighborhood: <%= @user.neighborhood %></br>
     E-mail: <%= @user.email %></br>
   </p>
