@@ -1,8 +1,19 @@
 <div>
   <p>
-    <%= @post.title %></br>
+    <h1><%= @post.title %></h1>
     <%= link_to @post.owner.name, user_path(@post.owner) %>: <%= @post.owner.neighborhood %></br>
     <%= @post.created_at %>
   </p>
   <p><%= @post.text_body %></p>
+</div>
+
+<div>
+  <h1>Comments</h1>
+  <% @post.comments.each do |comment|%>
+    <p>
+      <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %></br>
+      <%= comment.created_at %>
+    </p>
+    <p><%= comment.text_body %></p>
+  <% end %>
 </div>
