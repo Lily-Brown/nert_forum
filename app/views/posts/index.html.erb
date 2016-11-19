@@ -1,0 +1,12 @@
+<div>
+  <h1>NERT Forum</h1>
+  <% @posts.each do |post|%>
+    <p>
+      <h3><%= link_to post.title, post_path(post) %></h3>
+      <%= link_to post.owner.name, user_path(post.owner) %>: <%= post.owner.neighborhood %></br>
+      <%= post.created_at %>
+    </p>
+    <p><%= post.text_body %></p>
+    <hr>
+  <% end %>
+</div>
