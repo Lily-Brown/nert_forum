@@ -1,0 +1,10 @@
+<div>
+  <p>
+    <h1><%= @user.name %></h1>
+    <% if @user.image != nil %>
+      <%= image_tag @user.image %></br>
+    <% end %>
+    Neighborhood: <%= @user.neighborhood %></br>
+    E-mail: <%= @user.email %></br>
+  </p>
+</div>
