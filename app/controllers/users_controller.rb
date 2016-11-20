@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
   end
 
-  def new
+  def new # TODO: Remove #new and #create 
   end
 
   def create
