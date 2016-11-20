@@ -8,3 +8,8 @@
     E-mail: <%= @user.email %></br>
   </p>
 </div>
+
+<div>
+  <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
+  <p><%= link_to 'Delete Profile', user_path(@user), method: :delete %></p>
+</div>
