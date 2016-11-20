@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :verify_user, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -46,4 +47,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def verify_user
+    unless @user == current_user
+      flash[:error] = 'You are not authorized to perform this action.'
+      redirect_to :back
+    end
+  end
 end
