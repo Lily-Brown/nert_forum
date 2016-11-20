@@ -8,12 +8,20 @@
 </div>
 
 <div>
-  <h1>Comments</h1>
-  <% @post.comments.each do |comment|%>
-    <p>
-      <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %></br>
-      <%= comment.created_at %>
-    </p>
-    <p><%= comment.text_body %></p>
+  <% if @post.comments.length > 1 %>
+    <h1>Comments</h1>
+    <% @post.comments.each do |comment|%>
+      <p>
+        <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %></br>
+        <%= comment.created_at %>
+      </p>
+      <p><%= comment.text_body %></p>
+    <% end %>
+  <% end %>
+
+  <%= form_for @new_comment, :url => comments_path(@new_comment) do |f| %>
+    <p><%= f.text_area :text_body, placeholder: 'What do you have to say?' %></p>
+    <p><%= f.hidden_field :post_id, :value => @post.id%></p>
+    <p><%= f.submit 'Add Comment' %></p>
   <% end %>
 </div>
