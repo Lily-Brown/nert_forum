@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = 'Changes saved successful'
+      flash[:success] = 'Changes saved successfully.'
       redirect_to @user
     else
       flash[:error] = @user.error.full_messages.join(' ')
