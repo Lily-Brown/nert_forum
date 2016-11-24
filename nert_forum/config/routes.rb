@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :posts
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :update, :destroy]
 
   root to: 'posts#index'
 end

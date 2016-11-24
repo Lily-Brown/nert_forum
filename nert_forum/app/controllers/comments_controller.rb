@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :verify_logged_in
+  before_action :get_comment, only: [:update, :destroy]
+  before_action :verify_user, only: [:edit, :update, :destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -13,10 +15,30 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    if @comment.update_attributes(comment_params)
+      flash[:success] = 'Comment updated.'
+      redirect_to @comment.post
+    else
+      flash[:error] = @comment.errors.full_messages.join(' ')
+      redirect_to @comment.post
+    end
+  end
+
+  def destroy
+    if @comment.destroy
+      flash[:success] = "Comment deleted successfully."
+      redirect_to post_path(@comment.post)
+    else
+      flash[:error] = "Comment has not been deleted."
+      redirect_to post_path(@comment.post)
+    end
+  end
+
   private
 
-  def comment_params
-    params.require(:comment).permit(:text_body,:post_id)
+  def get_comment
+    @comment = Comment.find(params[:id])
   end
 
   def verify_logged_in
@@ -24,5 +46,16 @@ class CommentsController < ApplicationController
       flash[:error] = 'You must be logged in.'
       redirect_to new_user_session_path
     end
+  end
+
+  def verify_user
+    unless @comment.owner == current_user
+      flash[:error] = 'You are not authorized to perform this action.'
+      redirect_to :back
+    end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:text_body,:post_id)
   end
 end

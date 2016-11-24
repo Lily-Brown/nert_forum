@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161118211618) do
     t.string   "name"
     t.string   "neighborhood"
     t.string   "image"
+    t.boolean  "admin"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
