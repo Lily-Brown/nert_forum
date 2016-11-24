@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$( document ).on('turbolinks:load', function() {
+
+  $(document).find('.edit').on('click', function(event) {
+    event.preventDefault();
+    var toggleClass = '.comment' + this.id;
+    $(toggleClass).toggleClass('hide show');
+  });
+
+});
