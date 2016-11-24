@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = 'You are not authorized to perform this action.'
+    redirect_to root_url
+  end
+
 end
