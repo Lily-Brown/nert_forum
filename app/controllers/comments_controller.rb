@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :verify_logged_in
-  before_action :get_comment, only: [:show, :edit, :update, :destroy]
+  before_action :get_comment, only: [:update, :destroy]
   before_action :verify_user, only: [:edit, :update, :destroy]
 
   def create
@@ -8,6 +8,16 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = 'Comment added.'
+      redirect_to @comment.post
+    else
+      flash[:error] = @comment.errors.full_messages.join(' ')
+      redirect_to @comment.post
+    end
+  end
+
+  def update
+    if @comment.update_attributes(comment_params)
+      flash[:success] = 'Comment updated.'
       redirect_to @comment.post
     else
       flash[:error] = @comment.errors.full_messages.join(' ')
