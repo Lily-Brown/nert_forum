@@ -7,6 +7,11 @@
   <p><%= @post.text_body %></p>
 </div>
 
+<% if current_user == @post.owner%>
+  <div>
+   <%= link_to 'Edit Post', edit_post_path(@post) %>
+  </div>
+<% end %>
 <div>
   <% if @post.comments.length > 1 %>
     <h1>Comments</h1>
