@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :get_user, only: [:show, :edit, :update, :destroy]
-  before_action :verify_user, only: [:edit, :update, :destroy]
+  before_action :verify_user, only: [:edit, :update]
 
   def index
+    @users = User.all
   end
 
   def show
@@ -49,9 +50,10 @@ class UsersController < ApplicationController
   end
 
   def verify_user
-    unless @user == current_user
+    unless @user === current_user
       flash[:error] = 'You are not authorized to perform this action.'
       redirect_to :back
     end
   end
+
 end
