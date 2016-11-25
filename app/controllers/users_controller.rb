@@ -33,10 +33,10 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       flash[:success] = 'User deleted successfully.'
-      redirect_to root_path
+      redirect_to users_path
     else
       flash[:error] = @user.error.full_messages.join(' ')
-      render :show
+      render users_path
     end
   end
 
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def verify_admin
-    unless current_user.admin
+    unless current_user && current_user.admin
       flash[:error] = 'You must be an adminstrator to perform this action.'
       redirect_to root_path
     end

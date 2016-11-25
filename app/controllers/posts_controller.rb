@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :verify_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.reverse_order
   end
 
   def show
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def verify_user
-    unless @post.owner == current_user
+    unless @post.owner == current_user && current_user.admin
       flash[:error] = 'You are not authorized to perform this action.'
       redirect_to :back
     end
