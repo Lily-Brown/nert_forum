@@ -12,4 +12,5 @@ class User < ApplicationRecord
   # Relationships
   has_many :posts
   has_many :comments
+  has_many :events
 end

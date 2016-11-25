@@ -3,4 +3,5 @@ class Comment < ApplicationRecord
   alias_method :owner, :user
 
   belongs_to :post
+  belongs_to :event
 end
