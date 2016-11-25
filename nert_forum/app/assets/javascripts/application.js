@@ -25,9 +25,15 @@ $( document ).on('turbolinks:load', function() {
   });
 
   // Add Post button on Post#index
-  $(document).find('.save').on('click', function(event) {
+  $(document).find('.add_post').on('click', function(event) {
     event.preventDefault();
-    $('.toggle').toggleClass('hide show');
+    $('.post').toggleClass('hide show');
+  });
+
+  // Add Event button on Post#index
+  $(document).find('.add_event').on('click', function(event) {
+    event.preventDefault();
+    $('.event').toggleClass('hide show');
   });
 
 });
