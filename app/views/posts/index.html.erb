@@ -3,11 +3,11 @@
 
   <!-- ADD NEW POST DIV -->
   <div>
-    <div class='toggle show'>
-      <%= link_to 'Add Post', '#', class: 'toggle save show'%>
+    <div class='post show'>
+      <p><%= link_to 'Add Post', '#', class: 'toggle add_post show'%></p>
     </div>
 
-    <div class='toggle hide'>
+    <div class='post hide'>
       <%= form_for @new_post do |f| %>
 
         <div>
