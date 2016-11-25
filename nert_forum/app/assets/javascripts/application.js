@@ -17,10 +17,17 @@
 
 $( document ).on('turbolinks:load', function() {
 
+  // Edit Comment button on Post#show
   $(document).find('.edit').on('click', function(event) {
     event.preventDefault();
     var toggleClass = '.comment' + this.id;
     $(toggleClass).toggleClass('hide show');
+  });
+
+  // Add Post button on Post#index
+  $(document).find('.save').on('click', function(event) {
+    event.preventDefault();
+    $('.toggle').toggleClass('hide show');
   });
 
 });
