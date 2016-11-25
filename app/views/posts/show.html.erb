@@ -7,7 +7,8 @@
   <p><%= @post.text_body %></p>
 </div>
 
-<% if current_user == @post.owner || current_user.admin %>
+<% if current_user === nil %>
+<% elsif current_user == @post.owner || current_user.admin %>
   <div>
    <%= link_to 'Edit Post', edit_post_path(@post) %>
    <%= link_to 'Delete Post', post_path(@post), method: :delete, :data => {:confirm => 'Are you sure you want to delete this Post?'} %>
@@ -28,7 +29,8 @@
           </p>
           <p><%= comment.text_body %></p>
 
-          <% if current_user == comment.owner || current_user.admin %>
+          <% if current_user === nil %>
+          <% elsif current_user == comment.owner || current_user.admin %>
             <div>
               <%= link_to 'Edit Comment', '#', class: 'toggle edit show',
               id: comment.id %>
