@@ -26,7 +26,21 @@
     </div>
   </div>
   <!-- END NEW POST DIV -->
+  
+  <!-- UPCOMING EVENTS -->
+  <% @events.each do |event|%>
+    <div style="border: 2px solid grey;">
+      <p>
+        <h3><%= link_to event.name, event_path(event) %></h3>
+        <%= link_to event.owner.name, user_path(event.owner) %>: <%= event.owner.neighborhood %></br>
+        <%= event.location %>
+      </p>
+      <p><%= event.description %></p>
+    </div>
+  <% end %>
+  <!-- END UPCOMING EVENTS -->
 
+  <!-- RECENT POSTS -->
   <% @posts.each do |post|%>
     <div>
       <p>
@@ -38,4 +52,6 @@
       <hr>
     </div>
   <% end %>
+  <!-- END RECENT POSTS -->
+
 </div>
