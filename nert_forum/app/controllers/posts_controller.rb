@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :get_post, only: [:show, :edit, :update, :destroy]
-  before_action :verify_logged_in, only: [:update,:destroy]
+  before_action :verify_logged_in, only: [:create, :update,:destroy]
   before_action :verify_user, only: [:edit, :update, :destroy]
 
   def index
