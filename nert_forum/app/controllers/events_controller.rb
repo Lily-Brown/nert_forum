@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   before_action :get_event, only: [:show, :edit, :update, :destroy]
-  before_action :verify_logged_in, only: [:create, :update,:destroy]
-  before_action :verify_user, only: [:edit, :update, :destroy]
+  before_action :verify_admin, only: [:create, :edit, :update, :destroy]
 
   def index
     @events = Event.all.reverse_order
@@ -64,10 +63,10 @@ class EventsController < ApplicationController
     end
   end
 
-  def verify_user
-    unless @event.owner == current_user || current_user.admin
-      flash[:error] = 'You are not authorized to perform this action.'
-      redirect_to :back
+  def verify_admin
+    unless current_user && current_user.admin
+      flash[:error] = 'You must be an adminstrator to perform this action.'
+      redirect_to root_path
     end
   end
 
