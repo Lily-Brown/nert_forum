@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   def show
     @new_comment = Comment.new
+    @new_attendee = EventsUser.new
   end
 
   def edit
