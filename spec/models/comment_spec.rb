@@ -21,7 +21,7 @@ RSpec.describe Comment, type: :comment do
   end
 
   describe "::owner" do
-    it "can belong to a user" do
+    it "can belong to a user as:owner" do
       user = User.create(email:"test@test.com",password:"password")
       post = user.posts.create(title:"Post Title",text_body:"Post body")
       comment = user.posts[0].comments.create(text_body:"This is the body of my comment.",user_id:user.id)
