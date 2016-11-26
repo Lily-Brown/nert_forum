@@ -8,30 +8,30 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = 'Comment added.'
-      redirect_to @comment.post
+      redirect_to @comment.parent
     else
       flash[:error] = @comment.errors.full_messages.join(' ')
-      redirect_to @comment.post
+      redirect_to @comment.parent
     end
   end
 
   def update
     if @comment.update_attributes(comment_params)
       flash[:success] = 'Comment updated.'
-      redirect_to @comment.post
+      redirect_to @comment.parent
     else
       flash[:error] = @comment.errors.full_messages.join(' ')
-      redirect_to @comment.post
+      redirect_to @comment.parent
     end
   end
 
   def destroy
     if @comment.destroy
       flash[:success] = "Comment deleted successfully."
-      redirect_to post_path(@comment.post)
+      redirect_to @comment.parent
     else
       flash[:error] = "Comment has not been deleted."
-      redirect_to post_path(@comment.post)
+      redirect_to @comment.parent
     end
   end
 
@@ -56,6 +56,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text_body,:post_id)
+    params.require(:comment).permit(:text_body,:parent_id,:parent_type)
   end
 end

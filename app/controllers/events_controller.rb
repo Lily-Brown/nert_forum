@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  before_action :verify_logged_in, except: [:index,:show]
   before_action :get_event, only: [:show, :edit, :update, :destroy]
-  before_action :verify_user, only: [:create, :edit, :update, :destroy]
+  before_action :verify_logged_in, only: [:create, :update,:destroy]
+  before_action :verify_user, only: [:edit, :update, :destroy]
 
   def index
     @events = Event.all.reverse_order
@@ -14,10 +14,10 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:success] = "Event added."
-      redirect_to events_path
+      redirect_to posts_path
     else
       flash[:error] = "Event has not been added."
-      render events_path
+      render posts_path
     end
   end
 
@@ -44,7 +44,7 @@ class EventsController < ApplicationController
 
     if @event.destroy
       flash[:success] = "Event deleted successfully."
-      redirect_to events_path
+      redirect_to posts_path
     else
       flash[:error] = "Event has not been deleted."
       redirect_to @event
@@ -72,7 +72,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title,:text_body,:user_id)
+    params.require(:event).permit(:name,:location,:image,:description,:user_id)
   end
 
 end
