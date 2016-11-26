@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :user
   alias_method :owner, :user
+
+  validates :name, :location, :description, presence: true
   
   has_many :comments, as: :parent
 
