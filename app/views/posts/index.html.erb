@@ -26,7 +26,35 @@
     </div>
   </div>
   <!-- END NEW POST DIV -->
-  
+
+  <!-- ADD NEW EVENT DIV -->
+  <div>
+    <div class='event show'>
+      <p><%= link_to 'Add Event', '#', class: 'toggle add_event show'%></p>
+    </div>
+
+    <div class='event hide'>
+      <%= form_for @new_event do |f| %>
+
+        <div>
+          <p>
+            Event Name: <%= f.text_field :name, placeholder: 'Event Title' %><br/>
+            Location: <%= f.text_field :location, placeholder: 'Location' %><br/>
+            Image URL: <%= f.text_field :image, placeholder: 'Image URL' %><br/>
+            Description: <%= f.text_field :description, placeholder: 'What do you have to say?' %><br/>
+          </p>
+        </div>
+
+        <div>
+          <p><%= link_to 'Cancel', :back %></p>
+          <p><%= f.submit 'Save Changes' %></p>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+  <!-- END NEW EVENT DIV -->
+
   <!-- UPCOMING EVENTS -->
   <% @events.each do |event|%>
     <div style="border: 2px solid grey;">

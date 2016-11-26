@@ -63,7 +63,8 @@
 
   <%= form_for @new_comment, :url => comments_path(@new_comment) do |f| %>
     <p><%= f.text_area :text_body, placeholder: 'What do you have to say?' %></p>
-    <p><%= f.hidden_field :post_id, :value => @post.id%></p>
+    <p><%= f.hidden_field :parent_id, :value => @post.id %></p>
+    <p><%= f.hidden_field :parent_type, :value => 'Post' %></p>
     <p><%= f.submit 'Add Comment' %></p>
   <% end %>
 </div>
