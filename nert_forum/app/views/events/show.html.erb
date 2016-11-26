@@ -1,24 +1,26 @@
 <div>
   <p>
-    <h1><%= @post.title %></h1>
-    <%= link_to @post.owner.name, user_path(@post.owner) %>: <%= @post.owner.neighborhood %></br>
-    <%= @post.created_at %>
+    <h1><%= @event.name %></h1>
+    <%= link_to @event.owner.name, user_path(@event.owner) %>: <%= @event.owner.neighborhood %></br>
   </p>
-  <p><%= @post.text_body %></p>
+  <p>
+    Location: <%= @event.location%>
+  </p>
+  <p><%= @event.description %></p>
 </div>
 
 <% if current_user === nil %>
-<% elsif current_user == @post.owner || current_user.admin %>
+<% elsif current_user == @event.owner || current_user.admin %>
   <div>
-   <%= link_to 'Edit Post', edit_post_path(@post) %>
-   <%= link_to 'Delete Post', post_path(@post), method: :delete, :data => {:confirm => 'Are you sure you want to delete this Post?'} %>
+   <%= link_to 'Edit Event', edit_event_path(@event) %>
+   <%= link_to 'Delete Event', event_path(@event), method: :delete, :data => {:confirm => 'Are you sure you want to delete this Event?'} %>
   </div>
 <% end %>
 
 <div>
-  <% if @post.comments.length > 1 %>
+  <% if @event.comments.length > 1 %>
     <h1>Comments</h1>
-    <% @post.comments.each do |comment|%>
+    <% @event.comments.each do |comment|%>
       <!-- COMMENT DIV -->
       <div>
 
@@ -63,8 +65,8 @@
 
   <%= form_for @new_comment, :url => comments_path(@new_comment) do |f| %>
     <p><%= f.text_area :text_body, placeholder: 'What do you have to say?' %></p>
-    <p><%= f.hidden_field :parent_id, :value => @post.id %></p>
-    <p><%= f.hidden_field :parent_type, :value => 'Post' %></p>
+    <p><%= f.hidden_field :parent_id, :value => @event.id %></p>
+    <p><%= f.hidden_field :parent_type, :value => 'Event' %></p>
     <p><%= f.submit 'Add Comment' %></p>
   <% end %>
 </div>

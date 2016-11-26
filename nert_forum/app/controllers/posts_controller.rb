@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
-  before_action :verify_logged_in, except: [:index,:show]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
-  before_action :verify_user, only: [:create, :edit, :update, :destroy]
+  before_action :verify_logged_in, only: [:create, :update,:destroy]
+  before_action :verify_user, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.reverse_order
     @new_post = Post.new
+    @events = Event.all.reverse_order.limit(5)
+    @new_event = Event.new
   end
 
   def create

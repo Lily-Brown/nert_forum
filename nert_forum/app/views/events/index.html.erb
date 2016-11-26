@@ -1,31 +1,5 @@
 <div>
-  <h1>NERT Forum</h1>
-
-  <!-- ADD NEW POST DIV -->
-  <div>
-    <div class='post show'>
-      <p><%= link_to 'Add Post', '#', class: 'toggle add_post show'%></p>
-    </div>
-
-    <div class='post hide'>
-      <%= form_for @new_post do |f| %>
-
-        <div>
-          <p>
-            Title: <%= f.text_field :title, placeholder: 'Post Title' %><br/>
-            Post: <%= f.text_field :text_body, placeholder: 'What do you have to say?' %><br/>
-          </p>
-        </div>
-
-        <div>
-          <p><%= link_to 'Cancel', :back %></p>
-          <p><%= f.submit 'Save Changes' %></p>
-        </div>
-
-      <% end %>
-    </div>
-  </div>
-  <!-- END NEW POST DIV -->
+  <h2>Upcoming Events</h2>
 
   <!-- ADD NEW EVENT DIV -->
   <% if current_user === nil %>
@@ -60,7 +34,7 @@
 
   <!-- UPCOMING EVENTS -->
   <% @events.each do |event|%>
-    <div style="border: 2px solid grey;">
+    <div>
       <p>
         <h3><%= link_to event.name, event_path(event) %></h3>
         <%= link_to event.owner.name, user_path(event.owner) %>: <%= event.owner.neighborhood %></br>
@@ -70,19 +44,5 @@
     </div>
   <% end %>
   <!-- END UPCOMING EVENTS -->
-
-  <!-- RECENT POSTS -->
-  <% @posts.each do |post|%>
-    <div>
-      <p>
-        <h3><%= link_to post.title, post_path(post) %></h3>
-        <%= link_to post.owner.name, user_path(post.owner) %>: <%= post.owner.neighborhood %></br>
-        <%= post.created_at %>
-      </p>
-      <p><%= post.text_body %></p>
-      <hr>
-    </div>
-  <% end %>
-  <!-- END RECENT POSTS -->
 
 </div>

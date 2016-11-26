@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :comments, only: [:create, :update, :destroy]
+  resources :events
 
   root to: 'posts#index'
 end
