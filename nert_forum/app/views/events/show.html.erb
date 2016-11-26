@@ -21,7 +21,6 @@
   <p>
     <%= form_for @new_attendee do |f| %>
       <%= f.hidden_field :event_id, :value => @event.id %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.submit 'JOIN EVENT' %>
     <% end %>
   </p>
