@@ -15,12 +15,11 @@ ActiveRecord::Schema.define(version: 20161125071959) do
   create_table "comments", force: :cascade do |t|
     t.string   "text_body"
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_comments_on_event_id"
-    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["parent_type", "parent_id"], name: "index_comments_on_parent_type_and_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
