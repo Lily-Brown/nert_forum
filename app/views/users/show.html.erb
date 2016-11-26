@@ -13,3 +13,16 @@
   <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
   <p><%= link_to 'Delete Profile', user_path(@user), method: :delete %></p>
 </div>
+
+<!-- EVENTS ATTENDING DIV -->
+<div>
+  <% if @user.attended_events.length > 0 %>
+  <h1>Events You're Attending</h1>
+    <ul>
+    <% @user.attended_events.each do |event|%>
+      <li><%= link_to event.name, event_path(event) %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
+<!-- END EVENTS ATTENDING DIV -->
