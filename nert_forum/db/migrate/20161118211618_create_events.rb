@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.float :longitude
       t.string :description
       t.string :image
+      t.datetime :event_time
       t.belongs_to :user, foreign_key: true
 
       t.timestamps
