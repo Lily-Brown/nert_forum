@@ -33,7 +33,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :type
       t.string :name
       t.string :neighborhood
-      t.string :image
       t.boolean :admin
 
       t.timestamps null: false
