@@ -42,8 +42,8 @@
             <p>
               Event Name: <%= f.text_field :name, placeholder: 'Event Title' %><br/>
               Location: <%= f.text_field :location, placeholder: 'Location' %><br/>
-              Image URL: <%= f.text_field :image, placeholder: 'Image URL' %><br/>
               Description: <%= f.text_field :description, placeholder: 'What do you have to say?' %><br/>
+              Event Image: <%= f.file_field :photo %><br />
             </p>
           </div>
 

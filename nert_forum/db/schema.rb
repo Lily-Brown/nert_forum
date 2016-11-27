@@ -29,8 +29,12 @@ ActiveRecord::Schema.define(version: 20161127012410) do
     t.string   "description"
     t.string   "image"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
