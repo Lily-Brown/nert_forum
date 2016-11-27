@@ -7,6 +7,10 @@ class EventsController < ApplicationController
     @new_event = Event.new
   end
 
+  def past_index
+    @events = Event.where("event_date < ?", Date.today).order('event_date DESC')
+  end
+
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
