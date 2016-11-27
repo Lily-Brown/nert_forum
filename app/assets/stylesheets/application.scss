@@ -19,3 +19,17 @@
 a {
   color: green;
 }
+
+.logo-pad{
+  left: 2%;
+  top: 1vh;
+  border-radius: 10px;
+}
+
+.logo-pad > img{
+  border-radius: 10px;
+}
+
+.hide-on-med-and-down.left-nav-pad {
+  padding-left: 8%;
+}
