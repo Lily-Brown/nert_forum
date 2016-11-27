@@ -20,7 +20,9 @@
 $( document ).on('turbolinks:load', function() {
 
   // Fix for Side Nav in Mobile in Application Layout
-  $('.button-collapse').sideNav();
+  $('.button-collapse').sideNav({
+    closeOnClick: true
+  });
 
   // Edit Comment button on Post#show
   $(document).find('.edit').on('click', function(event) {
