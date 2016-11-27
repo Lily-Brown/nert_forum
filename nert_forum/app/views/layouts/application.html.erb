@@ -10,46 +10,65 @@
 
   <body>
 
-    <!-- NAVIGATION BAR -->
     <div>
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <% if current_user && current_user.admin %>
-          <li><%= link_to 'Profile', user_path(current_user) %></li>
-          <li><%= link_to 'Add New Volunteer', new_user_registration_path %></li>
-          <li><%= link_to 'Dashboard', users_path %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <% elsif current_user%>
-          <li><%= link_to 'Profile', user_path(current_user) %></li>
-          <li><%= link_to 'Change Password', edit_user_registration_path %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to 'Login', new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </div>
 
-    <!-- FLASH MESSAGES -->
-    <div>
-      <% flash.each do |name, msg| %>
-        <% if name == 'success' %>
-          <div class='col-md-8 col-md-offset-2 flash-success'> 
-            </br>
-            <p><strong><%= name.upcase %></strong>: <%= msg %></p>
-          </div>
-        <% else %>
-          <div class='col-md-8 col-md-offset-2 flash-error'> 
-            </br>
-            <p><strong><%= name.upcase %></strong>: <%= msg %></p>
-          </div>
-        <% end %>
-      <% end %> 
-    </div>
+      <!-- NAVIGATION BAR -->
 
-    <!-- YIELD -->
-    <div>
-      <%= yield %>
-    </div>
+<!--       <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Logo</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
+        </div>
+      </nav> -->
+
+      <nav>
+      <div class='nav-wrapper'>
+        <ul class = 'right'>
+          <li><%= link_to 'Home', root_path, class: 'brand-logo left' %></li>
+          <% if current_user && current_user.admin %>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Add New Volunteer', new_user_registration_path %></li>
+            <li><%= link_to 'Dashboard', users_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% elsif current_user%>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      </nav>
+
+      <!-- FLASH MESSAGES -->
+      <div class='row'>
+        <% flash.each do |name, msg| %>
+          <% if name == 'success' %>
+            <div class='col-md-8 col-md-offset-2 flash-success'> 
+              </br>
+              <p><strong><%= name.upcase %></strong>: <%= msg %></p>
+            </div>
+          <% else %>
+            <div class='col-md-8 col-md-offset-2 flash-error'> 
+              </br>
+              <p><strong><%= name.upcase %></strong>: <%= msg %></p>
+            </div>
+          <% end %>
+        <% end %> 
+      </div>
+
+      <!-- YIELD -->
+      <div class='container'>
+        <%= yield %>
+      </div>
     
+    </div>
+
   </body>
 </html>
