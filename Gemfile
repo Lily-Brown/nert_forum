@@ -31,6 +31,9 @@ gem 'devise'
 # Can Can for Auth
 gem 'cancan'
 
+# Materialie
+gem 'materialize-sass'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
