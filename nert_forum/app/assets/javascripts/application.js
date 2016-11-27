@@ -19,6 +19,9 @@
 
 $( document ).on('turbolinks:load', function() {
 
+  // Fix for Side Nav in Mobile in Application Layout
+  $('.button-collapse').sideNav();
+
   // Edit Comment button on Post#show
   $(document).find('.edit').on('click', function(event) {
     event.preventDefault();
@@ -38,13 +41,17 @@ $( document ).on('turbolinks:load', function() {
     $('.event').toggleClass('hide show');
   });
 
-  // Geocomplete
-  $(document).find('#geo-input').geocomplete();
-
-  // Collapsible Posts
+  // Collapsible Posts on Post#index
   $('.collapsible').collapsible();
 
-  // Fix for Side Nav in Mobile
-  $('.button-collapse').sideNav();
+  // Clickable Event Cards on Post#index
+  $(document).find('.card').on('click', function(event) {
+    event.preventDefault();
+    var eventId = this.id;
+    window.location.href = '/events/'+eventId;
+  });
+
+  // Geocomplete on Event#show and Post#index for Event Location
+  $(document).find('#geo-input').geocomplete();
 
 });
