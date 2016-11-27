@@ -5,9 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.reverse_order
-    @new_post = Post.new
-    @events = Event.all.reverse_order.limit(5)
-    @new_event = Event.new
+    @events = Event.all.reverse_order.limit(2)
   end
 
   def create
