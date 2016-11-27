@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126005948) do
+ActiveRecord::Schema.define(version: 20161127012410) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "text_body"
@@ -29,8 +29,12 @@ ActiveRecord::Schema.define(version: 20161126005948) do
     t.string   "description"
     t.string   "image"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -66,10 +70,13 @@ ActiveRecord::Schema.define(version: 20161126005948) do
     t.string   "type"
     t.string   "name"
     t.string   "neighborhood"
-    t.string   "image"
     t.boolean  "admin"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
