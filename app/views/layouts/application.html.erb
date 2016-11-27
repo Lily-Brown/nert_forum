@@ -121,6 +121,8 @@
                   <p>
                     Event Name: <%= f.text_field :name, placeholder: 'Event Title' %><br/>
                     Location: <%= f.text_field :location, id: 'geo-input', placeholder: 'Location' %><br/>
+                    Event Time: <%= f.date_field :event_date, class: 'datepicker' %>
+                    Event Time: <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker' %>
                     Description: <%= f.text_field :description, placeholder: 'What do you have to say?' %><br/>
                     Event Image: <%= f.file_field :photo %><br />
                   </p>
@@ -145,4 +147,8 @@
     </div>
 
   </body>
+  <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+  <script src="/jquery.js"></script>
+  <script src="/build/jquery.datetimepicker.full.min.js"></script>
+
 </html>
