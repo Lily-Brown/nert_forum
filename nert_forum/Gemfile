@@ -40,7 +40,7 @@ gem "paperclip", "~> 5.0.0"
 # GeoCoder
 gem 'geocoder'
 
-# DatePicker
+# Datepicker
 source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
 end
