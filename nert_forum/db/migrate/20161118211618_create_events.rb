@@ -3,6 +3,8 @@ class CreateEvents < ActiveRecord::Migration[5.0]
     create_table :events do |t|
       t.string :name
       t.string :location
+      t.float :latitude
+      t.float :longitude
       t.string :description
       t.string :image
       t.belongs_to :user, foreign_key: true

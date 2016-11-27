@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require materialize-sprockets
 //= require_tree .
+//= require jquery.geocomplete
 
 $( document ).on('turbolinks:load', function() {
 
@@ -36,5 +37,8 @@ $( document ).on('turbolinks:load', function() {
     event.preventDefault();
     $('.event').toggleClass('hide show');
   });
+
+  // Geocomplete
+  $(document).find('#geo-input').geocomplete();
 
 });
