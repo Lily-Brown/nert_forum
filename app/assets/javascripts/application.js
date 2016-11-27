@@ -41,4 +41,6 @@ $( document ).on('turbolinks:load', function() {
   // Geocomplete
   $(document).find('#geo-input').geocomplete();
 
+  // Collapsible Posts
+  $('.collapsible').collapsible();
 });
