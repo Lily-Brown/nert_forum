@@ -5,7 +5,10 @@
     <%= link_to @event.owner.name, user_path(@event.owner) %>: <%= @event.owner.neighborhood %></br>
   </p>
   <p>
-    Location: <%= link_to @event.location, 'http://maps.google.com/?q='+@event.location %>
+    Location: <%= link_to @event.location, 'http://maps.google.com/?q='+@event.location %></br>
+    Date:
+      <%= @event.event_date.strftime("%b %d, %Y ") %> at 
+      <%= @event.event_time.strftime("%I:%M%p") %></br>
   </p>
   <p><%= @event.description %></p>
 </div>

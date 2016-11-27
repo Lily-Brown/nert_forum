@@ -3,8 +3,12 @@ class EventsController < ApplicationController
   before_action :verify_admin, only: [:create, :edit, :update, :destroy]
 
   def index
-    @events = Event.all.reverse_order
+    @events = Event.where("event_date >= ?", Date.today).order('event_date ASC')
     @new_event = Event.new
+  end
+
+  def past_index
+    @events = Event.where("event_date < ?", Date.today).order('event_date DESC')
   end
 
   def create
@@ -15,8 +19,8 @@ class EventsController < ApplicationController
       flash[:success] = "Event added."
       redirect_to posts_path
     else
-      flash[:error] = "Event has not been added."
-      render posts_path
+      flash[:error] = "Event has not been added: "+@event.errors.full_messages.join('. ')
+      redirect_to posts_path
     end
   end
 
@@ -72,7 +76,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name,:location,:photo,:description,:user_id)
+    params.require(:event).permit(:name,:location,:photo,:description,:event_date,:event_time,:user_id)
   end
 
 end

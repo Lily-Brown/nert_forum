@@ -14,10 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require materialize-sprockets
+//= require datetimepicker
 //= require_tree .
 //= require jquery.geocomplete
+//= require clockpicker
 
 $( document ).on('turbolinks:load', function() {
+
+  // Fix for Side Nav in Mobile in Application Layout
+  $('.button-collapse').sideNav({
+    closeOnClick: true
+  });
 
   // Edit Comment button on Post#show
   $(document).find('.edit').on('click', function(event) {
@@ -38,7 +45,30 @@ $( document ).on('turbolinks:load', function() {
     $('.event').toggleClass('hide show');
   });
 
-  // Geocomplete
+  // Collapsible Posts on Post#index
+  $('.collapsible').collapsible();
+
+  // Clickable Event Cards on Post#index
+  $(document).find('.card').on('click', function(event) {
+    event.preventDefault();
+    var eventId = this.id;
+    window.location.href = '/events/'+eventId;
+  });
+
+  // Geocomplete on Event#show and Post#index for Event Location
   $(document).find('#geo-input').geocomplete();
+
+  // DatePicker on Event#show and Post#index for Event Time
+  $(document).find('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears: 15,
+    minDate: 0
+  });
+
+  // TimePicker on Event#show and Post#index for Event Time
+  $(document).find('#timepicker').pickatime({
+    autoclose: false,
+    twelvehour: true
+  });
 
 });

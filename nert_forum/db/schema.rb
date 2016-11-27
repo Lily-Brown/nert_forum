@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20161127012410) do
     t.float    "longitude"
     t.string   "description"
     t.string   "image"
+    t.datetime "event_date"
+    t.datetime "event_time"
     t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
