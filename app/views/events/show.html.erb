@@ -1,6 +1,7 @@
 <div>
   <p>
     <h1><%= @event.name %></h1>
+    <%= image_tag @event.photo.url(:medium) %></br>
     <%= link_to @event.owner.name, user_path(@event.owner) %>: <%= @event.owner.neighborhood %></br>
   </p>
   <p>
