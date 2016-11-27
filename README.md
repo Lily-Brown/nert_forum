@@ -19,6 +19,7 @@ See this project live [LINK HERE](#)
 - [Devise](https://github.com/plataformatec/devise) for Auth
 - [Materialize](http://materializecss.com)
 - [Paperclip](https://github.com/thoughtbot/paperclip)
+- [GeoComplete](https://ubilabs.github.io/geocomplete)
 - [[Possibilities for Stretch]]
   - [Friendly ID](https://github.com/norman/friendly_id)
 
