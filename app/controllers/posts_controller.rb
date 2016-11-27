@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.reverse_order
-    @events = Event.all.reverse_order.limit(2)
+    @events = Event.where("event_date >= ?", Date.today).order('event_date ASC').limit(2)
   end
 
   def create

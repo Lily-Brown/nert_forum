@@ -60,15 +60,15 @@ $( document ).on('turbolinks:load', function() {
 
   // DatePicker on Event#show and Post#index for Event Time
   $(document).find('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
+    selectMonths: true,
+    selectYears: 15,
+    minDate: 0
   });
 
   // TimePicker on Event#show and Post#index for Event Time
   $(document).find('#timepicker').pickatime({
     autoclose: false,
-    twelvehour: true,
-    default: '12:00:00'
+    twelvehour: true
   });
 
 });
