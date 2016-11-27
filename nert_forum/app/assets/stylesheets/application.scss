@@ -33,3 +33,19 @@ a {
 .hide-on-med-and-down.left-nav-pad {
   padding-left: 8%;
 }
+
+.flash-success, .flash-error, #error_explanation{
+  border: 1px solid black;
+  text-align: center;
+}
+
+.flash-success {
+  background-color: #7EFF78;
+  color: green;
+}
+
+.flash-error, #error_explanation {
+  background-color: #FF939E;
+  color: red;
+
+}
