@@ -4,6 +4,8 @@
     <p>
       Event Name: <%= f.text_field :name %><br/>
       Location: <%= f.text_field :location, id: 'geo-input' %><br/>
+      Event Time: <%= f.date_field :event_date, class: 'datepicker' %>
+      Event Time: <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker' %>
       Description: <%= f.text_field :description %><br/>
       Event Image: <%= f.file_field :photo %><br />
     </p>

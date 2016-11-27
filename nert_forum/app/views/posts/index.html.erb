@@ -10,7 +10,9 @@
           <span class="card-title"> <%= event.name%> </span>
         </div>
         <div class="card-content">
-          
+          <%= link_to event.location, 'http://maps.google.com/?q='+event.location %></br>
+          <strong><%= event.event_date.strftime("%b %d, %Y ") %> at 
+          <%= event.event_time.strftime("%I:%M%p") %></strong></br>
           <%= truncate(event.description, length: 150) %>
         </div>
         <div class="card-action">

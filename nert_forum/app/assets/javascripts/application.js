@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require materialize-sprockets
+//= require datetimepicker
 //= require_tree .
 //= require jquery.geocomplete
+//= require clockpicker
 
 $( document ).on('turbolinks:load', function() {
 
@@ -55,5 +57,18 @@ $( document ).on('turbolinks:load', function() {
 
   // Geocomplete on Event#show and Post#index for Event Location
   $(document).find('#geo-input').geocomplete();
+
+  // DatePicker on Event#show and Post#index for Event Time
+  $(document).find('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+  // TimePicker on Event#show and Post#index for Event Time
+  $(document).find('#timepicker').pickatime({
+    autoclose: false,
+    twelvehour: true,
+    default: '12:00:00'
+  });
 
 });
