@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20161127012410) do
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "description"
     t.string   "image"
     t.integer  "user_id"

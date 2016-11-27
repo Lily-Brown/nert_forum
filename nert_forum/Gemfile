@@ -37,6 +37,9 @@ gem 'materialize-sass'
 # Paper Clip
 gem "paperclip", "~> 5.0.0"
 
+# GeoCoder
+gem 'geocoder'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
