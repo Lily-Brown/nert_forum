@@ -2,17 +2,17 @@
 
   <div>
     <p>
-      Event Name: <%= f.text_field :name %><br/>
-      Location: <%= f.text_field :location, id: 'geo-input' %><br/>
-      Event Time: <%= f.date_field :event_date, class: 'datepicker' %>
+      Event Name: <%= f.text_field :name, placeholder: 'Event Title' %><br/>
+      Location: <%= f.text_field :location, id: 'geo-input', placeholder: 'Location' %><br/>
+      Event Date: <%= f.date_field :event_date, class: 'datepicker' %>
       Event Time: <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker' %>
-      Description: <%= f.text_field :description %><br/>
+      Description: <%= f.text_field :description, placeholder: 'What do you have to say?' %><br/>
       Event Image: <%= f.file_field :photo %><br />
     </p>
   </div>
 
   <div>
-    <p><%= link_to 'Cancel', :back, class: 'waves-effect waves-light btn' %></p>
+    <p><%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn' %></p>
     <p><%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %></p>
   </div>
 
