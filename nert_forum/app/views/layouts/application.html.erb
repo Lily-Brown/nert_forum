@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
 
     <script src='http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places'></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,9 +16,25 @@
     <div>
 
       <nav>
-      <div class='nav-wrapper'>
+      <div class='nav-wrapper green'>
       <%= link_to 'NERT Forum', root_path, class: 'brand-logo' %>
-        <ul class = 'right'>
+      <a href='#' data-activates='mobile-nav' class='button-collapse'><i class='material-icons'>menu</i></a>
+        <ul class='right hide-on-med-and-down'>
+          <% if current_user && current_user.admin %>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Add New Volunteer', new_user_registration_path %></li>
+            <li><%= link_to 'Dashboard', users_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% elsif current_user%>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+        <ul class='side-nav' id='mobile-nav'>
           <% if current_user && current_user.admin %>
             <li><%= link_to 'Profile', user_path(current_user) %></li>
             <li><%= link_to 'Change Password', edit_user_registration_path %></li>

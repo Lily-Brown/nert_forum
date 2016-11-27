@@ -43,4 +43,8 @@ $( document ).on('turbolinks:load', function() {
 
   // Collapsible Posts
   $('.collapsible').collapsible();
+
+  // Fix for Side Nav in Mobile
+  $('.button-collapse').sideNav();
+
 });

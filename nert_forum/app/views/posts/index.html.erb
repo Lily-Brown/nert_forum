@@ -61,7 +61,7 @@
   <div class="row cards">
     <% @events.each do |event|%>
     <div class="col s12 m6">
-      <div class="card">
+      <div class="card hoverable">
         <div class="card-image">
           <%= image_tag event.photo.url(:medium) %>
           <span class="card-title"> <%= event.name%> </span>
