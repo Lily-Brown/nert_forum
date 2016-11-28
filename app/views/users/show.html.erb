@@ -61,7 +61,14 @@
       <h3>Posts</h3>
         <ul>
         <% @user.posts.each do |post|%>
-          <li><%= link_to post.title, post %></li>
+
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title"><%= link_to post.title, post %></span>
+              <p><%= truncate(post.text_body,length: 150) %></p>
+            </div>
+          </div>
+
         <% end %>
         </ul>
       <% end %>
@@ -74,7 +81,15 @@
       <h3>Comments</h3>
         <ul>
         <% @user.comments.each do |comment|%>
-          <li><%= link_to truncate(comment.text_body,length: 40), comment.parent %></li>
+
+          <div class="card">
+            <div class="card-content">
+              <p><%= truncate(comment.text_body,length: 40) %>
+                 <%= link_to 'Read Post', comment.parent, class: 'right' %></p>
+            </div>
+          </div>
+
+          <li></li>
         <% end %>
         </ul>
       <% end %>
@@ -89,7 +104,7 @@
     <div id="aside">
       <h3><%= @user.name %></h3>
       <div class="divider"></div>
-      <div class="card">
+      <div class="card profile_card">
         <div class="card-image">
           <%= image_tag @user.photo.url(:medium) %>
         </div>
