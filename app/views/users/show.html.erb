@@ -1,26 +1,129 @@
-<div>
-  <p>
-    <h1><%= @user.name %></h1>
-    <%= image_tag @user.photo.url(:medium) %></br>
-    Neighborhood: <%= @user.neighborhood %></br>
-    E-mail: <%= @user.email %></br>
-  </p>
-</div>
+<div class="row">
+  <div class="col l8">
 
-<div>
-  <p><%= link_to 'Edit Profile', edit_user_path(@user), class: 'waves-effect waves-light btn' %></p>
-  <p><%= link_to 'Delete Profile', user_path(@user), method: :delete, class: 'waves-effect waves-light btn' %></p>
-</div>
+    <!-- EVENTS ATTENDING DIV -->
+    <div>
+      <% if @user.attended_events.length > 0 %>
+      <h3>Events Attending</h3>
+        <ul>
+        <% @user.attended_events.each do |event|%>
 
-<!-- EVENTS ATTENDING DIV -->
-<div>
-  <% if @user.attended_events.length > 0 %>
-  <h1>Events You're Attending</h1>
-    <ul>
-    <% @user.attended_events.each do |event|%>
-      <li><%= link_to event.name, event_path(event) %></li>
-    <% end %>
-    </ul>
-  <% end %>
+         <div class="card horizontal hoverable event_card" id=<%=event.id%>>
+          <div class="card-image">
+            <%= image_tag event.photo, class: 'crop' %>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5><%= event.name %></h5></br>
+              <%= event.event_date.strftime("%b %d, %Y ") %> at 
+              <%= event.event_time.strftime("%I:%M%p") %></br>
+              <%= event.location %></br>
+            </div>
+          </div>
+        </div>
+
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <!-- END EVENTS ATTENDING DIV -->
+
+    <!-- EVENTS HOSTING DIV -->
+    <div>
+      <% if @user.events.length > 0 %>
+      <h3>Events Hosting</h3>
+        <ul>
+        <% @user.events.each do |event|%>
+
+          <div class="card horizontal hoverable event_card" id=<%=event.id%>>
+            <div class="card-image">
+              <%= image_tag event.photo, class: 'crop' %>
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <h5><%= event.name %></h5></br>
+                <%= event.event_date.strftime("%b %d, %Y ") %> at 
+                <%= event.event_time.strftime("%I:%M%p") %></br>
+                <%= event.location %></br>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <!-- END EVENTS HOSTING DIV -->
+
+    <!-- POSTS DIV -->
+    <div>
+      <% if @user.posts.length > 0 %>
+      <h3>Posts</h3>
+        <ul>
+        <% @user.posts.each do |post|%>
+
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title"><%= link_to post.title, post %></span>
+              <p><%= truncate(post.text_body,length: 150) %></p>
+            </div>
+          </div>
+
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <!-- END POSTS DIV -->
+
+    <!-- COMMENTS DIV -->
+    <div>
+      <% if @user.comments.length > 0 %>
+      <h3>Comments</h3>
+        <ul>
+        <% @user.comments.each do |comment|%>
+
+          <div class="card">
+            <div class="card-content">
+              <p><%= truncate(comment.text_body,length: 40) %>
+                 <%= link_to 'Read Post', comment.parent, class: 'right' %></p>
+            </div>
+          </div>
+
+          <li></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <!-- END COMMENTS DIV -->
+
+  </div>
+
+  <div class="col l4">
+
+    <!-- USER PROFILE INFO -->
+    <div id="aside">
+      <h3><%= @user.name %></h3>
+      <div class="divider"></div>
+      <div class="card profile_card">
+        <div class="card-image">
+          <%= image_tag @user.photo.url(:medium) %>
+        </div>
+        <div class="card-content">
+          <p>
+            Neighborhood: <%= @user.neighborhood %></br>
+            E-mail: <%= @user.email %></br>
+          </p>
+        </div>
+        <% if current_user === nil %>
+        <% elsif current_user === @user || current_user.admin %>
+          <div class="card-action center">
+            <p><%= link_to 'Edit Profile', edit_user_path(@user), class: 'waves-effect waves-light btn' %></p>
+            <p><%= link_to 'Delete Profile', user_path(@user), method: :delete, class: 'waves-effect waves-light btn' %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- USER PROFILE INFO -->
+
+  </div>
 </div>
-<!-- END EVENTS ATTENDING DIV -->
