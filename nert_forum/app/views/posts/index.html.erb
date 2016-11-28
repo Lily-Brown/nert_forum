@@ -24,9 +24,11 @@
   </div>
   <!-- END UPCOMING EVENTS -->
 
-  <div>
-    <p><%= link_to 'More Upcoming Events', events_path %></p>
-  </div>
+  <% if Event.where("event_date >= ?", Date.today).count > 2 %>
+    <div class='center'>
+      <p><%= link_to 'More Upcoming Events'.upcase, events_path %></p>
+    </div>
+  <% end %>
 
   <!-- RECENT POSTS -->
   <ul class="collapsible popout" data-collapsible="accordion">
