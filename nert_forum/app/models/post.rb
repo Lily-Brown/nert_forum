@@ -4,5 +4,10 @@ class Post < ApplicationRecord
 
   validates :title, :text_body, presence: true
   
+  before_save :default_values
+  def default_values
+    self.flagged ||= false
+  end
+
   has_many :comments, as: :parent
 end

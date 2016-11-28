@@ -56,6 +56,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text_body,:parent_id,:parent_type)
+    params.require(:comment).permit(:text_body,:flagged,:flagged_reasons,:parent_id,:parent_type)
   end
 end
