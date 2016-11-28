@@ -49,7 +49,7 @@ $( document ).on('turbolinks:load', function() {
   $('.collapsible').collapsible();
 
   // Clickable Event Cards on Post#index
-  $(document).find('.card').on('click', function(event) {
+  $(document).find('.event_card').on('click', function(event) {
     event.preventDefault();
     var eventId = this.id;
     window.location.href = '/events/'+eventId;
