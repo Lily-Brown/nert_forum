@@ -64,14 +64,16 @@ class PostsController < ApplicationController
   end
 
   def verify_user
-    unless @post.owner == current_user || current_user.admin
-      flash[:error] = 'You are not authorized to perform this action.'
-      redirect_to :back
+    unless params[:post][:flagged]
+      unless @post.owner == current_user || current_user.admin
+        flash[:error] = 'You are not authorized to perform this action.'
+        redirect_to :back
+      end
     end
   end
 
   def post_params
-    params.require(:post).permit(:title,:text_body,:flagged,:flagged_reasons,:user_id)
+    params.require(:post).permit(:title,:text_body,:flagged,:user_id)
   end
 
 end
