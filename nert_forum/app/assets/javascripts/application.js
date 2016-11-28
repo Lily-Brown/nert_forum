@@ -71,4 +71,7 @@ $( document ).on('turbolinks:load', function() {
     twelvehour: true
   });
 
+  // Sticky Aside for User#show
+  $(document).find('#aside').pushpin({ top:110 });
+
 });
