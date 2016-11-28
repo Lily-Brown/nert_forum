@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def verify_user
-    unless params[:post][:flagged]
+    unless params[:post] && params[:post][:flagged] || params[:action] != "destroy"
       unless @post.owner == current_user || current_user.admin
         flash[:error] = 'You are not authorized to perform this action.'
         redirect_to :back
