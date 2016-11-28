@@ -19,11 +19,10 @@ ActiveRecord::Schema.define(version: 20161127012410) do
     t.string   "text_body"
     t.integer  "user_id"
     t.boolean  "flagged"
-    t.string   "flagged_reasons"
     t.integer  "parent_id"
     t.string   "parent_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["parent_type", "parent_id"], name: "index_comments_on_parent_type_and_parent_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
@@ -60,10 +59,9 @@ ActiveRecord::Schema.define(version: 20161127012410) do
     t.string   "title"
     t.string   "text_body"
     t.boolean  "flagged"
-    t.string   "flagged_reasons"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
