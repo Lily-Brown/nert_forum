@@ -49,13 +49,15 @@ class CommentsController < ApplicationController
   end
 
   def verify_user
-    unless @comment.owner == current_user || current_user.admin
-      flash[:error] = 'You are not authorized to perform this action.'
-      redirect_to :back
+    unless params[:comment] && params[:comment][:flagged] || params[:action] != "destroy"
+      unless @comment.owner == current_user || current_user.admin
+        flash[:error] = 'You are not authorized to perform this action.'
+        redirect_to :back
+      end
     end
   end
 
   def comment_params
-    params.require(:comment).permit(:text_body,:flagged,:flagged_reasons,:parent_id,:parent_type)
+    params.require(:comment).permit(:text_body,:flagged,:parent_id,:parent_type)
   end
 end

@@ -4,7 +4,6 @@ class CreateComments < ActiveRecord::Migration[5.0]
       t.string :text_body
       t.belongs_to :user, foreign_key: true
       t.boolean :flagged
-      t.string :flagged_reasons
       t.integer :parent_id
       t.string  :parent_type
 
