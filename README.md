@@ -20,6 +20,7 @@ See this project live [LINK HERE](#)
 - [Materialize](http://materializecss.com)
 - [Paperclip](https://github.com/thoughtbot/paperclip)
 - [GeoComplete](https://ubilabs.github.io/geocomplete)
+- [Clockpicker](https://github.com/chingyawhao/materialize-clockpicker)
 - [[Possibilities for Stretch]]
   - [Friendly ID](https://github.com/norman/friendly_id)
 

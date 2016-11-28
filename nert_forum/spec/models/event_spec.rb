@@ -48,7 +48,7 @@ RSpec.describe Event, type: :model do
       event = user.events.create(name:"Event Name",description:"This is the description for the Event.",location:"Event Location.")
       comment1 = event.comments.create(text_body:"This is the body of my comment.",user_id:user.id)
       comment = event.comments.create(text_body:"This is the body of my comment.",user_id:user.id)
-      expect(event.comments).to eq([comment1,comment])
+      expect(event.comments).to eq([comment,comment1])
     end
   end
 

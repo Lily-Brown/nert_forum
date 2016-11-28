@@ -41,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
     if @post.destroy
       flash[:success] = "Post deleted successfully."
       redirect_to posts_path
@@ -65,14 +64,16 @@ class PostsController < ApplicationController
   end
 
   def verify_user
-    unless @post.owner == current_user || current_user.admin
-      flash[:error] = 'You are not authorized to perform this action.'
-      redirect_to :back
+    unless params[:post][:flagged]
+      unless @post.owner == current_user || current_user.admin
+        flash[:error] = 'You are not authorized to perform this action.'
+        redirect_to :back
+      end
     end
   end
 
   def post_params
-    params.require(:post).permit(:title,:text_body,:user_id)
+    params.require(:post).permit(:title,:text_body,:flagged,:user_id)
   end
 
 end
