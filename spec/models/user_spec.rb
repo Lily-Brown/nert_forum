@@ -54,7 +54,7 @@ RSpec.describe User, type: :user do
       user = User.create(email:"test@test.com",password:"password")
       event = user.events.create(name:"Event Name",description:"This is the description for the Event.",location:"Event Location.")
       event1 = user.events.create(name:"Event Name",description:"This is the description for the Event.",location:"Event Location.")
-      expect(user.events).to eq([event,event1])
+      expect(user.events).to eq([event1,event])
     end
   end
 
