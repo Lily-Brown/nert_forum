@@ -63,5 +63,10 @@ a {
 .flash-error, #error_explanation {
   background-color: #FF939E;
   color: red;
+}
 
+.crop {
+  width: 100px !important;
+  height: 190px !important;
+  object-fit: cover; 
 }
