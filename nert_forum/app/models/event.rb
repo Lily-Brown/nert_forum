@@ -11,10 +11,10 @@ class Event < ApplicationRecord
 
   validates :name, :location, :description, presence: true
   
-  has_many :comments, as: :parent
+  has_many :comments, as: :parent, :dependent => :destroy
 
   has_many :events_users, dependent: :destroy
-  has_many :attendees, through: :events_users, source: :user
+  has_many :attendees, through: :events_users, source: :user, :dependent => :destroy
 
   def event_date_cannot_be_in_the_past
     if event_date.present? && event_date < Date.today
