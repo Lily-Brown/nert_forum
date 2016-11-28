@@ -14,7 +14,7 @@
 
   <body>
 
-    <div>
+    <div> 
 
       <nav>
       <div class='nav-wrapper green'>
@@ -87,13 +87,17 @@
         <% end %> 
       </div>
 
-      <!-- ADD NEW POST DIV -->
-        <div class='container'>
+      <div class='container'>
 
+        <!-- ADD NEW POST DIV -->
+        <div class='container'>
           <div class='post hide'>
             <%= form_for Post.new do |f| %>
 
               <div class='card'>
+                <div class='card-action'>
+                  <h4>Add New Post</h4>
+                </div>
                 <div class='card-content'>
                   <div class='input-field col s6'>
                     <label for='Title'>Title</label>
@@ -103,6 +107,7 @@
                     <label for='text_body'>Post</label>
                     <%= f.text_area :text_body, id: 'text_body', class: 'materialize-textarea' %><br/>
                   </div>
+                </div>
 
                 <div class='card-action'>
                   <%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn right' %>
@@ -116,61 +121,67 @@
         <!-- END NEW POST DIV -->
 
         <!-- ADD NEW EVENT DIV -->
-        <% if current_user === nil %>
-        <% elsif current_user.admin %>
-          <div class='container'>
+        <div class='container'>
+          <% if current_user === nil %>
+          <% elsif current_user.admin %>
 
-            <div class='event hide'>
-              <%= form_for Event.new do |f| %>
+              <div class='event hide'>
+                <%= form_for Event.new do |f| %>
 
-              <div class='card'>
-                <div class='card-content'>
-                  <div class='input-field col s6'>
-                    <label for='title'>Event Title</label>
-                    <%= f.text_field :name %><br/>
+                <div class='card'>
+                  <div class='card-action'>
+                    <h4>Add New Event</h4>
                   </div>
-                  <div class='input-field col s6'>
-                    <label for='location'>Location</label>
-                    <%= f.text_field :location, id: 'geo-input' %><br/>
-                  </div>
-                  <div class='input-field col s6'>
-                    <label for='event_date'>Event Date</label>
-                    <%= f.date_field :event_date, class: 'datepicker' %><br/>
-                  </div>
-                  <div class='input-field col s6'>
-                    <label for='event_time'>Event Time</label>
-                    <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker' %><br/>
-                  </div>
-                  <div class='input-field col s6'>
-                    <label for='description'>Description</label>
-                    <%= f.text_area :description, id: 'description', class: 'materialize-textarea' %><br/>
-                  </div>
-                  <div class="file-field input-field">
-                    <div class="btn">
-                      <span>Event Image</span>
-                      <%= f.file_field :photo %>
+                  <div class='card-content'>
+                    <div class='input-field col s6'>
+                      <label for='title'>Event Title</label>
+                      <%= f.text_field :name %><br/>
                     </div>
-                    <div class="file-path-wrapper">
-                      <input class="file-path validate" type="text">
+                    <div class='input-field col s6'>
+                      <label for='location'>Location</label>
+                      <%= f.text_field :location, id: 'geo-input' %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label for='event_date'>Event Date</label>
+                      <%= f.date_field :event_date, class: 'datepicker' %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label for='event_time'>Event Time</label>
+                      <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker' %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label for='description'>Description</label>
+                      <%= f.text_area :description, id: 'description', class: 'materialize-textarea' %><br/>
+                    </div>
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>Event Image</span>
+                        <%= f.file_field :photo %>
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
                     </div>
                   </div>
 
-                <div class='card-action'>
-                  <%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn right' %>
-                  <%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %>
+                  <div class='card-action'>
+                    <%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn right' %>
+                    <%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %>
+                  </div>
                 </div>
-              </div>
 
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
         <!-- END NEW EVENT DIV -->
 
-      <!-- YIELD -->
-      <div>
-        <%= yield %>
-      </div>
+        <!-- YIELD -->
+        <div>
+          <%= yield %>
+        </div>
+
+      </div> <!-- END CONTAINER -->
     
     </div>
 
