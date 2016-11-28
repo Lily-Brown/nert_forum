@@ -35,7 +35,7 @@ RSpec.describe Post, type: :post do
       post = Post.create(title:"Post Title",text_body:"Post text.")
       comment = post.comments.create(text_body:"Comment text.",user_id:user.id)
       comment1 = post.comments.create(text_body:"Comment text 1.",user_id:user.id)
-      expect(post.comments).to eq([comment,comment1])
+      expect(post.comments).to eq([comment1,comment])
     end
   end
 
