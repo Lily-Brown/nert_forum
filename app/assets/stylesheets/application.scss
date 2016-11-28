@@ -74,3 +74,17 @@ a {
 .profile_card {
   width: 300px;
 }
+
+.event-image img {
+  height: 100%; 
+  padding-top: 1%;
+}
+
+.event-info {
+  padding-top: 5%;
+}
+
+.attendees {
+    max-height: 100px;
+    overflow-y: scroll;
+}
