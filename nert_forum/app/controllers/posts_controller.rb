@@ -41,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
     if @post.destroy
       flash[:success] = "Post deleted successfully."
       redirect_to posts_path
@@ -72,7 +71,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title,:text_body,:user_id)
+    params.require(:post).permit(:title,:text_body,:flagged,:flagged_reasons,:user_id)
   end
 
 end

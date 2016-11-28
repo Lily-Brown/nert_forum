@@ -1,6 +1,15 @@
 <div>
   <p>
     <h1><%= @post.title %></h1>
+    <p>
+      <%= form_for @post do |f| %>
+        <%= f.hidden_field :flagged, :value => true %>
+        <%= f.button :submit, class: 'waves-effect waves-light btn',
+              :data => {:confirm => 'Are you sure you want to FLAG this Post?'} do %>
+          <i class='material-icons'>report_problem</i>
+        <% end %>
+      <% end %>
+    </p>
     <%= link_to @post.owner.name, user_path(@post.owner) %>: <%= @post.owner.neighborhood %></br>
     <%= @post.created_at %>
   </p>
