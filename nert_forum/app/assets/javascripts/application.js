@@ -49,7 +49,7 @@ $( document ).on('turbolinks:load', function() {
   $('.collapsible').collapsible();
 
   // Clickable Event Cards on Post#index
-  $(document).find('.card').on('click', function(event) {
+  $(document).find('.event_card').on('click', function(event) {
     event.preventDefault();
     var eventId = this.id;
     window.location.href = '/events/'+eventId;
@@ -70,5 +70,8 @@ $( document ).on('turbolinks:load', function() {
     autoclose: false,
     twelvehour: true
   });
+
+  // Sticky Profile Info on User#show
+  $(document).find('#aside').pushpin({ top:110 });
 
 });
