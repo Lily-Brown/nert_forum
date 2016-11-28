@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @flagged_posts = Post.where(flagged: true)
+    @flagged_comments = Comment.where(flagged: true)
   end
 
   def show
