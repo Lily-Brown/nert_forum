@@ -2,11 +2,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
   skip_before_filter :require_no_authentication, only: [:new, :create]
+  before_action :verify_admin, only: [:new, :create]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
@@ -38,6 +39,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
+  def verify_admin
+    unless current_user && current_user.admin
+      flash[:error] = 'You must be an adminstrator to perform this action.'
+      redirect_to root_path
+    end
+  end
 
   def sign_up(resource_name, resource)
     true
