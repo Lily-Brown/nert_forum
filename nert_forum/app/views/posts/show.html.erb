@@ -1,7 +1,11 @@
 <h1><%= @post.title %></h1>
 
-<% if @post.flagged == false %>
-
+<% if @post.flagged == false || current_user && current_user.admin %>
+  
+  <% if @post.flagged == true %>
+    <p><%= link_to 'This Post has been flagged for moderation.', users_path, 
+        class: 'waves-effect waves-light btn'%></p>
+  <% end %>
   <div class='post-info'>
     <% if current_user === nil %>
     <% elsif current_user == @post.owner || current_user.admin %>
