@@ -40,6 +40,23 @@
 
   <div>
     <h3>Discussion</h3>
+
+    <!-- NEW COMMENT -->
+    <div class='card'>
+      <div class='card-content'>
+        <%= form_for @new_comment, :url => comments_path(@new_comment) do |f| %>
+          <%= f.hidden_field :parent_id, :value => @post.id %>
+          <%= f.hidden_field :parent_type, :value => 'Post' %>
+          <div class='input-field col s6'>
+            <label for='text_body'>Join in!</label>
+            <%= f.text_area :text_body, id: 'text_body', class: 'materialize-textarea' %><br/>
+          </div>
+          <p><%= f.submit 'Add Comment', class: 'waves-effect waves-light btn' %></p>
+        <% end %>
+      </div>
+    </div>
+    <!-- END NEW COMMENT -->
+
     <% if @post.comments.length > 0 %>    
       <% @post.comments.each do |comment|%>
         <!-- COMMENT DIV -->
@@ -107,19 +124,6 @@
       <% end %>
     <% end %>
 
-    <div class='card'>
-      <div class='card-content'>
-        <%= form_for @new_comment, :url => comments_path(@new_comment) do |f| %>
-          <%= f.hidden_field :parent_id, :value => @post.id %>
-          <%= f.hidden_field :parent_type, :value => 'Post' %>
-          <div class='input-field col s6'>
-            <label for='text_body'>Join in!</label>
-            <%= f.text_area :text_body, id: 'text_body', class: 'materialize-textarea' %><br/>
-          </div>
-          <p><%= f.submit 'Add Comment', class: 'waves-effect waves-light btn' %></p>
-        <% end %>
-      </div>
-    </div>
   </div>
 
 <% else %>
