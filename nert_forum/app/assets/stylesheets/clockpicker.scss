@@ -10,9 +10,10 @@
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import "application.scss";
 
 .picker__box {
-    background: green;
+    background: $clockpicker-picker-box-background;
 }
 
 .picker__date-display {
@@ -27,7 +28,7 @@
     font-size: 70px;
     padding: 10px;
     padding-bottom: 0px;
-    color: green;
+    color: $clockpicker-primary-color;
 }
 
 .clockpicker-display-column {
@@ -44,7 +45,7 @@
     display: inline-block;
     font-size: 23px;
     line-height: 25px;
-    color: green;
+    color: $clockpicker-primary-color;
 }
 
 .clockpicker-span-hours,
@@ -198,10 +199,10 @@
     -ms-transition: background-color 300ms;
     -o-transition: background-color 300ms;
     transition: background-color 300ms;
-    background-color: green;
+    background-color: $clockpicker-tick-background-color;
     &.active,
     &:hover {
-        background-color: green;
+        background-color: $clockpicker-tick-background-color-active;
     }
 }
 
@@ -247,28 +248,28 @@
 
 .clockpicker-canvas-bearing {
     stroke: none;
-    fill: green;
+    fill: $clockpicker-canvas-bearing-fill;
 }
 
 .clockpicker-canvas-fg {
     stroke: none;
-    fill: green;
+    fill: rgba($clockpicker-canvas-fg-fill, 0);
     &.active {
-        fill: green;
+        fill: rgba($clockpicker-canvas-fg-fill, 0.5);
     }
 }
 
 .clockpicker-canvas-bg {
     stroke: none;
-    fill: green;
+    fill: $clockpicker-canvas-bg-fill;
 }
 
 .clockpicker-canvas-bg-trans {
-    fill: green;
+    fill: $clockpicker-canvas-bg-fill;
 }
 
 .clockpicker-canvas line {
-    stroke: green;
+    stroke: $clockpicker-canvas-bg-stroke;
     stroke-width: 1;
     stroke-linecap: round;
     /*shape-rendering: crispEdges;*/
@@ -295,7 +296,7 @@
 }
 
 button {
-    color: green;
+    color: $clockpicker-button-color;
 }
 
 //buttons
@@ -310,10 +311,10 @@ button {
             background-color: transparent;
         }
         &.active {
-            background-color: green;
+            background-color: rgba($clockpicker-button-background-color, 0.25);
         }
         &:active {
-            background-color: green;
+            background-color: rgba($clockpicker-button-background-color, 0.5);
         }
     }
 }
@@ -327,7 +328,7 @@ button {
             background-color: transparent;
         }
         &:active {
-            background-color: green;
+            background-color: rgba($clockpicker-button-background-color, 0.25);
         }
     }
 }
