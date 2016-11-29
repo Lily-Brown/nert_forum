@@ -21,8 +21,6 @@ See this project live [HERE](https://nert-forum.herokuapp.com/)
 - [Paperclip](https://github.com/thoughtbot/paperclip)
 - [GeoComplete](https://ubilabs.github.io/geocomplete)
 - [Clockpicker](https://github.com/chingyawhao/materialize-clockpicker)
-- [[Possibilities for Stretch]]
-  - [Friendly ID](https://github.com/norman/friendly_id)
 
 ### Installation
 
@@ -116,11 +114,17 @@ export default Ember.Controller.extend({
 
 Yikes, did I run into many issues here. 
 
-My first struggle was with a nested application path (see: [StackOverflow](http://stackoverflow.com/questions/40835985/rails-deployment-on-heroku-failed-to-detect-set-buildpack). Most Google/SO results yielded the same solutions and none worked for me. It turns out Heroku expects your git respository to be the base level of your application. To get around this, I had to run: ```git subtree push --prefix output heroku master``` to specify the root of my application.
+My first struggle was with a nested application path (see: [StackOverflow](http://stackoverflow.com/questions/40835985/rails-deployment-on-heroku-failed-to-detect-set-buildpack)). Most Google/SO results yielded the same solutions and none worked for me. It turns out Heroku expects your git respository to be the base level of your application. To get around this, I had to run: ```git subtree push --prefix nert_forum heroku master``` to specify the root of my application.
 
 I also had issues with precompilation of assets, which was fixed by remembering to run: ```RAILS_ENV=production bundle exec rake assets:precompile``` before each push.
 
 Lastly, default images for paperclip. (As well as the expected image deprecation.) My future goal is to implement Paperclip using S3 to persist the data on Heroku.
+
+### Future Features
+- Persistent Images with S3/Paperclip
+- Calendar View for Events Index
+- Storing Reasons for Flagging a Post/Comment
+
 ### Process
 
 See: [Planning_Deliverables](https://github.com/LilyCole/nert_forum/blob/master/Planning%20Deliverables.md) for Wireframes, User Stories, Sprints
