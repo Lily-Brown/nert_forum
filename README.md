@@ -8,7 +8,7 @@ The NERT Forum is a place to encourage involvement, engagement and community amo
 
 ### Deployment
 
-See this project live [HERE](https://nert-forum.herokuapp.com/)
+See this project live [https://nert-forum.herokuapp.com/](https://nert-forum.herokuapp.com/)
 
 ### Technologies
 
@@ -109,6 +109,33 @@ export default Ember.Controller.extend({
   }
 });
 ```
+
+Frontend: app/adapters/application.js
+```javascript
+import Ember from 'ember';
+import JSONAPIAdapter from 'ember-data/adapters/json-api';
+
+
+const { String: { pluralize, underscore } } = Ember;
+
+export default JSONAPIAdapter.extend({
+  current: Ember.inject.service(),
+  headers: function() {
+    var token = this.get('current.token');
+    return {
+      "Authorization":'Token token=' + token
+    };
+  }.property().volatile(),
+
+  pathForType(type) {
+    return pluralize(underscore(type));
+  }
+
+});
+```
+
+Sets Auth Key Token in Headers!
+![AuthKey](http://i.imgur.com/RXlceHz.png)
 
 3) In my Rails project: Deploying to Heroku
 
