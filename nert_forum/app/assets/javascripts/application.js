@@ -72,6 +72,6 @@ $( document ).on('turbolinks:load', function() {
   });
 
   // Sticky Profile Info on User#show
-  $(document).find('#aside').pushpin({ top:110 });
+  // $(document).find('#aside').pushpin({ top:110 });
 
 });
