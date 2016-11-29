@@ -96,6 +96,20 @@ a {
 }
 
 .attendees {
-    max-height: 100px;
-    overflow-y: scroll;
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.edit_btn i {
+  width: 24px;
+}
+
+.unflag {
+  position: relative;
+  top: -25px;
+}
+
+.moderate {
+  width: 90%;
+  margin: 0 auto;
 }
