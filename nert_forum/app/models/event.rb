@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_attached_file :photo, styles: { medium: '535x300#', thumb: '180x100#' }, default_url: '/:style/event_default.png'
+  has_attached_file :photo, styles: { medium: '535x300#', thumb: '180x100#' }, default_url: '/images/:style/event_default.png'
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   validate :event_date_cannot_be_in_the_past
 
