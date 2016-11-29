@@ -44,7 +44,7 @@
       <% @post.comments.each do |comment|%>
         <!-- COMMENT DIV -->
         <div>
-
+          <% if comment.flagged === false %>
           <div class='toggle show comment<%=comment.id%>'>
             <div class='card'>
               <div class='card-content'>
@@ -65,6 +65,17 @@
                     <% end %>
                   </div>
                 <% end %>
+                <!-- flag comment -->
+                <p>
+                  <%= form_for comment do |f| %>
+                    <%= f.hidden_field :flagged, :value => true %>
+                    <%= f.button :submit, class: 'waves-effect waves-light btn',
+                          :data => {:confirm => 'Are you sure you want to FLAG this Comment?'} do %>
+                      <i class='material-icons'>report_problem</i>
+                    <% end %>
+                  <% end %>
+                </p>
+                <!-- end flag comment -->
               </div>
             </div>
           </div>
@@ -84,7 +95,13 @@
 
             <% end %>
           </div>
-        
+          <% else %>
+          <div class='card'>
+            <div class='card-content'>
+              <p>This Comment has been flagged for moderation.</p>
+            </div>
+          </div>
+          <% end %>
         </div>
         <!-- END COMMENT DIV -->
       <% end %>
