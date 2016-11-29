@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def verify_user
-    unless @user === current_user
+    unless @user === current_user || current_user.admin
       flash[:error] = 'You are not authorized to perform this action.'
       redirect_to root_path
     end
