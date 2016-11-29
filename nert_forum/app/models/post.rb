@@ -9,5 +9,5 @@ class Post < ApplicationRecord
     self.flagged ||= false
   end
 
-  has_many :comments, as: :parent
+  has_many :comments, as: :parent, :dependent => :destroy
 end
