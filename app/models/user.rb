@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_attached_file :photo, styles: { medium: '300x300#', thumb: '100x100#' }, :default_url => ActionController::Base.helpers.asset_path(':style/user_default.png')
+  has_attached_file :photo, styles: { medium: '300x300#', thumb: '100x100#' }, default_url: '/assets/:style/user_default.png'
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 
   validates :email, presence: true
