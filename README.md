@@ -8,7 +8,7 @@ The NERT Forum is a place to encourage involvement, engagement and community amo
 
 ### Deployment
 
-See this project live [LINK HERE](#)
+See this project live [HERE](https://nert-forum.herokuapp.com/)
 
 ### Technologies
 
@@ -28,22 +28,99 @@ See this project live [LINK HERE](#)
 
 1 - Fork and clone this repository.
 
-2 - CD into the project directory.
+2 - CD into the project directory:v```> cd nert_forum```
 
-3 - Install gems: ```> bundle install```
+3 - CD into Rails app directory: ```> cd nert_forum```
+(Yes, do this twice.)
 
-4 - Create the database: ```> rake db:create```
+4 - Install gems: ```> bundle install```
 
-5 - Migrate the database: ```> rake db:migrate```
+5 - Create the database: ```> rake db:create```
 
-6 - Run the server: ```> rails s```
+6 - Migrate the database: ```> rake db:migrate```
 
-7 - Visit: http://localhost:3000/ to see your app live.
+7 - Run the server: ```> rails s```
+
+8 - Visit: http://localhost:3000/ to see your app live.
 
 ### Screenshots
 
+Home Page - Upcoming Events and Recent Posts
+![Home Page](http://i.imgur.com/00mUu2P.jpg)
+
+Profile Page - Events Attending, Posts and Comments
+![Profile Page](http://i.imgur.com/2l527F6.png)
+
+Event Page - Details, Users Attending, Join Event
+![Event Page](http://i.imgur.com/bVhvClL.jpg)
+
+Dashboard Page - User Management, Post/Comment Moderation
+![Dashboard Page](http://i.imgur.com/lrDnCq3.png)
+
 ### Challenges
 
+1) One of my first iterations of this project was using Ember.js as the front end. 
+
+You can see my progress here: [github/nert-forum](https://github.com/LilyCole/nert-forum). It was great learning a new framework but, when taking time management/project scope into account, I ended up starting from scratch with Ruby on Rails. My biggest struggles in Ember were basically relearning how to do the simplest of actions. My hope is to pick up from where I left off and employ Ember in a future project.
+
+2) In my Ember project: Authentication. 
+
+I had originally started implementing Devise on the backend with Rails but it became clear this would not be helpful or useful integrating with Ember. Instead, I had to build my own auth with a Sessions Controller, SecureRandom.uuid, and by building a and using a service in Ember.
+
+Backend: app/controllers/sessions_controller.rb
+```ruby
+class SessionsController < ApplicationController
+
+  def create
+    user = User.find_by(email: session_params[:email])
+    if user&.authenticate(session_params[:password])
+      user.auth_key = SecureRandom.uuid
+      user.save
+      session = Session.new(auth_key: user.auth_key, user: user, id: user.id)
+      render :json => session, status: :created
+    else
+      render status: :unauthorized
+    end
+  end
+  # ...
+end
+```
+
+Frontend: app/controllers/login.js
+```javascript 
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  current: Ember.inject.service(),
+  actions: {
+    login() { 
+      this.get('model').save().then(
+        () => {
+          var currentService = this.get('current');
+          var user = this.get('model.user');
+          var authKey = this.get('model.authKey');
+          currentService.set('user',user);
+          currentService.set('token',authKey);
+          this.transitionToRoute('user',user);
+        }, 
+        function() { 
+          alert('Invalid email or password.'); 
+        }
+      );
+    }
+  }
+});
+```
+
+3) In my Rails project: Deploying to Heroku
+
+Yikes, did I run into many issues here. 
+
+My first struggle was with a nested application path (see: [StackOverflow](http://stackoverflow.com/questions/40835985/rails-deployment-on-heroku-failed-to-detect-set-buildpack). Most Google/SO results yielded the same solutions and none worked for me. It turns out Heroku expects your git respository to be the base level of your application. To get around this, I had to run: ```git subtree push --prefix output heroku master``` to specify the root of my application.
+
+I also had issues with precompilation of assets, which was fixed by remembering to run: ```RAILS_ENV=production bundle exec rake assets:precompile``` before each push.
+
+Lastly, default images for paperclip. (As well as the expected image deprecation.) My future goal is to implement Paperclip using S3 to persist the data on Heroku.
 ### Process
 
 See: [Planning_Deliverables](https://github.com/LilyCole/nert_forum/blob/master/Planning%20Deliverables.md) for Wireframes, User Stories, Sprints
