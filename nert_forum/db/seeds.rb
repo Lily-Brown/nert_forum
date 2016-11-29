@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create([
-  { name: 'Admin', email: 'admin@admin.com', password: 'password', admin: true },
+  { name: 'Admin', neighborhood: 'Neighborhood', email: 'admin@admin.com', password: 'password', admin: true },
   { name: 'Lily Cole', neighborhood: 'Crocker Amazon', email: 'lily@lily.com', password: 'password'},
   { name: 'Chris Chan', neighborhood: 'East Bay', email: 'chris@chris.com', password: 'password'},
   { name: 'Toby Zitsman', neighborhood: 'Palo Alto', email: 'toby@toby.com', password: 'password'},
@@ -98,4 +98,49 @@ Event.create([
   { name: 'Art Walk', user_id: User.first.id,
     location: '4791 18th Street, San Francisco, CA, United States', event_date: 'Thu, 08 Dec 2016 00:00:00 UTC +00:00', event_time: 'Wed, 30 Nov 2016 00:03:00 UTC +00:00',
     description: 'Nam magna elit, vehicula nec tristique id, luctus non urna. Morbi quis est at eros pellentesque finibus. Donec quis purus sit amet lectus interdum finibus. Nunc a semper nulla. Integer euismod velit risus, elementum porttitor diam tincidunt ac. Cras tempor risus vitae nunc elementum, vel congue mauris venenatis.' }
+]);
+
+EventsUser.create([
+  { user_id: User.first.id, event_id: Event.first.id },
+  { user_id: User.second.id, event_id: Event.first.id },
+  { user_id: User.third.id, event_id: Event.first.id },
+  { user_id: User.fourth.id, event_id: Event.first.id },
+  { user_id: User.fifth.id, event_id: Event.first.id },
+  { user_id: User.first.id, event_id: Event.first.id },
+  { user_id: User.second.id, event_id: Event.first.id },
+  { user_id: User.third.id, event_id: Event.second.id },
+  { user_id: User.fourth.id, event_id: Event.second.id },
+  { user_id: User.last.id, event_id: Event.second.id },
+  { user_id: User.first.id, event_id: Event.second.id },
+  { user_id: User.second.id, event_id: Event.second.id },
+  { user_id: User.third.id, event_id: Event.second.id },
+  { user_id: User.last.id, event_id: Event.second.id },
+  { user_id: User.fifth.id, event_id: Event.second.id }
+]);
+
+Comment.create([
+  { user_id: users.first.id, parent_id: Event.first.id, parent_type: 'Event',
+    text_body: 'Nam magna elit, vehicula nec tristique id, luctus non urna. Morbi quis est at eros pellentesque finibus. Donec quis purus sit amet lectus interdum finibus. Nunc a semper nulla. Integer euismod velit risus, elementum porttitor diam tincidunt ac. Cras tempor risus vitae nunc elementum, vel congue mauris venenatis.' },
+  { user_id: users.second.id, parent_id: Event.first.id, parent_type: 'Event',
+    text_body: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc purus erat, sodales id sodales ut, interdum nec nibh. Nam magna elit, vehicula nec tristique id, luctus non urna.' },
+  { user_id: users.third.id, parent_id: Event.first.id, parent_type: 'Event',
+    text_body: 'Pellentesque urna felis, interdum in maximus sit amet, tristique eu neque. Sed feugiat posuere sapien, eu venenatis enim sollicitudin non. Pellentesque turpis ligula, tincidunt id lacus nec, dapibus suscipit odio. Nulla ut vehicula mi. Maecenas accumsan quam ac odio dapibus tincidunt.' },
+  { user_id: users.fourth.id, parent_id: Event.first.id, parent_type: 'Event',
+    text_body: 'Nam magna elit, vehicula nec tristique id, luctus non urna. Morbi quis est at eros pellentesque finibus. Donec quis purus sit amet lectus interdum finibus. Nunc a semper nulla. Integer euismod velit risus, elementum porttitor diam tincidunt ac. Cras tempor risus vitae nunc elementum, vel congue mauris venenatis.' },
+  { user_id: users.fifth.id, parent_id: Event.last.id, parent_type: 'Event',
+    text_body: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc purus erat, sodales id sodales ut, interdum nec nibh. Nam magna elit, vehicula nec tristique id, luctus non urna.' },
+  { user_id: users.first.id, parent_id: Event.last.id, parent_type: 'Event',
+    text_body: 'Pellentesque urna felis, interdum in maximus sit amet, tristique eu neque. Sed feugiat posuere sapien, eu venenatis enim sollicitudin non. Pellentesque turpis ligula, tincidunt id lacus nec, dapibus suscipit odio. Nulla ut vehicula mi. Maecenas accumsan quam ac odio dapibus tincidunt.' },
+  { user_id: users.second.id, parent_id: Event.second.id, parent_type: 'Event',
+    text_body: 'Nam magna elit, vehicula nec tristique id, luctus non urna. Morbi quis est at eros pellentesque finibus. Donec quis purus sit amet lectus interdum finibus. Nunc a semper nulla. Integer euismod velit risus, elementum porttitor diam tincidunt ac. Cras tempor risus vitae nunc elementum, vel congue mauris venenatis.' },
+  { user_id: users.third.id, parent_id: Event.second.id, parent_type: 'Event',
+    text_body: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc purus erat, sodales id sodales ut, interdum nec nibh. Nam magna elit, vehicula nec tristique id, luctus non urna.' },
+  { user_id: users.fourth.id, parent_id: Event.second.id, parent_type: 'Event',
+    text_body: 'Pellentesque urna felis, interdum in maximus sit amet, tristique eu neque. Sed feugiat posuere sapien, eu venenatis enim sollicitudin non. Pellentesque turpis ligula, tincidunt id lacus nec, dapibus suscipit odio. Nulla ut vehicula mi. Maecenas accumsan quam ac odio dapibus tincidunt.' },
+  { user_id: users.fifth.id, parent_id: Event.second.id, parent_type: 'Event',
+    text_body: 'Nam magna elit, vehicula nec tristique id, luctus non urna. Morbi quis est at eros pellentesque finibus. Donec quis purus sit amet lectus interdum finibus. Nunc a semper nulla. Integer euismod velit risus, elementum porttitor diam tincidunt ac. Cras tempor risus vitae nunc elementum, vel congue mauris venenatis.' },
+  { user_id: users.last.id, parent_id: Event.third.id, parent_type: 'Event',
+    text_body: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc purus erat, sodales id sodales ut, interdum nec nibh. Nam magna elit, vehicula nec tristique id, luctus non urna.' },
+  { user_id: users.last.id, parent_id: Event.third.id, parent_type: 'Event',
+    text_body: 'Pellentesque urna felis, interdum in maximus sit amet, tristique eu neque. Sed feugiat posuere sapien, eu venenatis enim sollicitudin non. Pellentesque turpis ligula, tincidunt id lacus nec, dapibus suscipit odio. Nulla ut vehicula mi. Maecenas accumsan quam ac odio dapibus tincidunt.' }
 ]);
