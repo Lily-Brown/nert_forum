@@ -10,7 +10,7 @@
 
          <div class="card horizontal hoverable event_card" id=<%=event.id%>>
           <div class="card-image">
-            <%= image_tag event.photo, class: 'crop' %>
+            <%= image_tag event.photo.url(:medium), class: 'crop' %>
           </div>
           <div class="card-stacked">
             <div class="card-content">
@@ -37,7 +37,7 @@
 
           <div class="card horizontal hoverable event_card" id=<%=event.id%>>
             <div class="card-image">
-              <%= image_tag event.photo, class: 'crop' %>
+              <%= image_tag event.photo.url(:medium), class: 'crop' %>
             </div>
             <div class="card-stacked">
               <div class="card-content">
