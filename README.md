@@ -10,6 +10,9 @@ The NERT Forum is a place to encourage involvement, engagement and community amo
 
 See this project live [https://nert-forum.herokuapp.com/](https://nert-forum.herokuapp.com/)
 
+Admin login: admin@admin.com
+Password: password
+
 ### Technologies
 
 - Ruby on Rails
