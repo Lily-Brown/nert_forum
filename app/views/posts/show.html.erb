@@ -3,9 +3,13 @@
 <% if @post.flagged == false || current_user && current_user.admin %>
   
   <% if @post.flagged == true %>
-    <p><%= link_to 'This Post has been flagged for moderation.', users_path, 
-        class: 'waves-effect waves-light btn'%></p>
+    <div class='card'>
+      <div class='card-content'>
+        <p>THIS POST HAS BEEN FLAGGED FOR MODERATION.</p>
+      </div>
+    </div>
   <% end %>
+
   <div class='post-info'>
     <% if current_user === nil %>
     <% elsif current_user == @post.owner || current_user.admin %>
@@ -26,15 +30,20 @@
     <p><%= @post.text_body %></p>
 
     <!-- flag post -->
-    <p>
-      <%= form_for @post do |f| %>
-        <%= f.hidden_field :flagged, :value => true %>
-        <%= f.button :submit, class: 'waves-effect waves-light btn',
-              :data => {:confirm => 'Are you sure you want to FLAG this Post?'} do %>
-          <i class='material-icons'>report_problem</i>
+    <% if @post.flagged == true %>
+      <p><%= link_to 'UNFLAG POST', users_path, 
+            class: 'waves-effect waves-light btn'%></p>
+    <% else %>
+      <p>
+        <%= form_for @post do |f| %>
+          <%= f.hidden_field :flagged, :value => true %>
+          <%= f.button :submit, class: 'waves-effect waves-light btn',
+                :data => {:confirm => 'Are you sure you want to FLAG this Post?'} do %>
+            <i class='material-icons'>report_problem</i>
+          <% end %>
         <% end %>
-      <% end %>
-    </p>
+      </p>
+    <% end %>
     <!-- end flag post -->
   </div>    
 
@@ -117,7 +126,7 @@
           <% else %>
           <div class='card'>
             <div class='card-content'>
-              <p>This Comment has been flagged for moderation.</p>
+              <p>THIS COMMENT HAS BEEN FLAGGED FOR MODERATION.</p>
             </div>
           </div>
           <% end %>

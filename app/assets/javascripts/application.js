@@ -59,16 +59,24 @@ $( document ).on('turbolinks:load', function() {
   $(document).find('#geo-input').geocomplete();
 
   // DatePicker on Event#show and Post#index for Event Time
-  $(document).find('.datepicker').pickadate({
+  $('.datepicker').pickadate({
     selectMonths: true,
     selectYears: 15,
-    minDate: 0
+    minDate: 0,
+    onStart: function ()
+      {
+        if (!this.get()) {
+          var date = new Date();
+          this.set('select', [date.getFullYear(), date.getMonth(), date.getDate()]);
+        }
+      }
   });
 
   // TimePicker on Event#show and Post#index for Event Time
-  $(document).find('#timepicker').pickatime({
+  $('#timepicker').pickatime({
     autoclose: false,
-    twelvehour: true
+    twelvehour: true,
+    default: '00:00:00'
   });
 
   // Sticky Profile Info on User#show
