@@ -68,7 +68,8 @@ $( document ).on('turbolinks:load', function() {
   // TimePicker on Event#show and Post#index for Event Time
   $(document).find('#timepicker').pickatime({
     autoclose: false,
-    twelvehour: true
+    twelvehour: true,
+    default: '00:00:00'
   });
 
   // Sticky Profile Info on User#show
