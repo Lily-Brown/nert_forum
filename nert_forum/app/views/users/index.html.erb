@@ -39,7 +39,7 @@
             <% @flagged_posts.each do |post|%>
               <div class='card'>
                 <div class='card-content'>
-                  <%= link_to post.title, post_path(post) %></br>
+                  <strong>Post Title: </strong><%= link_to post.title, post_path(post) %></br>
                   <%= link_to post_path(post), method: :delete, :data => {:confirm => 'Are you sure you want to delete this Post?'} do %>
                     <i class='material-icons right'>delete</i>
                   <% end %>
@@ -69,7 +69,12 @@
             <% @flagged_comments.each do |comment|%>
               <div class='card'>
                 <div class='card-content'>
-                  <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %></br>
+                  <% if comment.parent_type === 'Post' %>
+                    <strong>On Post:</strong> <%= link_to comment.parent.title, post_path(comment.parent) %></br>
+                  <% else %>
+                    <strong>On Event:</strong> <%= link_to comment.parent.name, event_path(comment.parent) %></br>
+                  <% end %>
+                  <strong>Posted By:</strong> <%= link_to comment.owner.name, user_path(comment.owner) %></br>
                   <%= comment.text_body%></br></br>
                   <%= link_to comment_path(comment), method: :delete, :data => {:confirm => 'Are you sure you want to delete this Comment?'} do %>
                     <i class='material-icons right'>delete</i>
