@@ -110,6 +110,19 @@ a {
   top: -25px;
 }
 
+.flag-btn {
+  background: white;
+  border-style: none;
+}
+
+.flag-btn i{
+  color: #DF130F;
+}
+
+.flag-btn i:hover{
+  color: #DF595C;
+}
+
 .moderate {
   width: 90%;
   margin: 0 auto;
