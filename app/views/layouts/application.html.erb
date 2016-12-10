@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NertForum</title>
+    <link rel='icon' href='http://www.nicolaginzler.com/wp-content/uploads/2016/02/NERT-helmet.jpg'>
+    <%= csrf_meta_tags %>
+
+     <script src='https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBvHCTYl08KHLKS2m3KW-jwARhKFKbmj_I&libraries=places'></script>
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div> 
+
+      <nav>
+      <div class='nav-wrapper green'>
+      <%= link_to image_tag('NERT-logo.jpg', height: '50vh'), root_path, class: 'brand-logo logo-pad' %>
+      <a href='#' data-activates='mobile-nav' class='button-collapse'><i class='material-icons'>menu</i></a>
+        <ul class='left hide-on-med-and-down left-nav-pad'>
+          <% if current_user && current_user.admin %>
+            <li><%= link_to 'ADD EVENT', '#',
+              class: 'add_event waves-effect waves-light btn' %></li>
+            <li><%= link_to 'ADD POST', '#',
+              class: 'add_post waves-effect waves-light btn' %></li>
+          <% elsif current_user%>
+            <li><%= link_to 'ADD POST', '#',
+              class: 'add_post waves-effect waves-light btn' %></li>
+          <% end %>
+        </ul>
+        <ul class='right hide-on-med-and-down'>
+          <% if current_user && current_user.admin %>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Add New Volunteer', new_user_registration_path %></li>
+            <li><%= link_to 'Dashboard', users_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% elsif current_user%>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+        <ul class='side-nav' id='mobile-nav'>
+          <% if current_user && current_user.admin %>
+            <li><%= link_to 'ADD EVENT', '#',
+              class: 'add_event waves-effect waves-light btn' %></li>
+            <li><%= link_to 'ADD POST', '#',
+              class: 'add_post waves-effect waves-light btn' %></li>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Add New Volunteer', new_user_registration_path %></li>
+            <li><%= link_to 'Dashboard', users_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% elsif current_user%>
+            <li><%= link_to 'ADD POST', '#',
+                class: 'add_post waves-effect waves-light btn' %></li>
+            <li><%= link_to 'Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      </nav>
+
+      <!-- FLASH MESSAGES -->
+      <div class='row'>
+        <% flash.each do |name, msg| %>
+          <% if name == 'success' || name == 'notice' %>
+            <div class='col-md-8 col-md-offset-2 flash-success'> 
+              </br>
+              <p><strong><%= name.upcase %></strong>: <%= msg %></p>
+            </div>
+          <% else %>
+            <div class='col-md-8 col-md-offset-2 flash-error'> 
+              </br>
+              <p><strong><%= name.upcase %></strong>: <%= msg %></p>
+            </div>
+          <% end %>
+        <% end %> 
+      </div>
+
+      <div class='container'>
+
+        <!-- ADD NEW POST DIV -->
+        <div class='container'>
+          <div class='post hide'>
+            <%= form_for Post.new do |f| %>
+
+              <div class='card'>
+                <div class='card-action'>
+                  <h4>Add New Post</h4>
+                </div>
+                <div class='card-content'>
+                  <div class='input-field col s6'>
+                    <label for='Title'>Title</label>
+                    <%= f.text_field :title %><br/>
+                  </div>
+                  <div class='input-field col s6'>
+                    <label for='text_body'>Post</label>
+                    <%= f.text_area :text_body, id: 'text_body', class: 'materialize-textarea' %><br/>
+                  </div>
+                </div>
+
+                <div class='card-action'>
+                  <%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn right' %>
+                  <%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %>
+                </div>
+              </div>
+
+            <% end %>
+          </div>
+        </div>
+        <!-- END NEW POST DIV -->
+
+        <!-- ADD NEW EVENT DIV -->
+        <div class='container'>
+          <% if current_user === nil %>
+          <% elsif current_user.admin %>
+
+              <div class='event hide'>
+                <%= form_for Event.new do |f| %>
+
+                <div class='card'>
+                  <div class='card-action'>
+                    <h4>Add New Event</h4>
+                  </div>
+                  <div class='card-content'>
+                    <div class='input-field col s6'>
+                      <label for='title'>Event Title</label>
+                      <%= f.text_field :name %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label class='active' for='location'>Location</label>
+                      <%= f.text_field :location, id: 'geo-input' %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label for='event_date'>Event Date</label>
+                      <%= f.date_field :event_date, class: 'datepicker' %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label class='active' for='event_time'>Event Time</label>
+                      <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker active' %><br/>
+                    </div>
+                    <div class='input-field col s6'>
+                      <label for='description'>Description</label>
+                      <%= f.text_area :description, id: 'description', class: 'materialize-textarea' %><br/>
+                    </div>
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>Event Image</span>
+                        <%= f.file_field :photo %>
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='card-action'>
+                    <%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn right' %>
+                    <%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %>
+                  </div>
+                </div>
+
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+        <!-- END NEW EVENT DIV -->
+
+        <!-- YIELD -->
+        <div>
+          <%= yield %>
+        </div>
+
+      </div> <!-- END CONTAINER -->
+    
+    </div>
+
+  </body>
+
+</html>
