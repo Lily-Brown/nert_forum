@@ -1,0 +1,160 @@
+<!-- EVENT INFO -->
+<h1><%= @event.name %></h1>
+
+  <div class='row'>
+
+    <!-- EVENT IMAGE -->
+    <div class='col l8 m12 event-image'>
+      <%= image_tag @event.photo.url(:medium) %>
+    </div>
+    <!-- END EVENT IMAGE -->
+
+    <!-- EVENT INFORMATION -->
+    <div class='col l4 m12'>
+      <div class='event-info'>
+        Event Host: <%= link_to @event.owner.name, user_path(@event.owner) %> (<%= @event.owner.neighborhood %>)</br>
+        Location: <%= link_to @event.location, 'http://maps.google.com/?q='+@event.location %></br>
+        Date:
+          <%= @event.event_date.strftime("%b %d, %Y ") %> at 
+          <%= @event.event_time.strftime("%I:%M%p") %></br>
+
+        <!-- ATTENDEES DIV -->
+        <div>
+          <% if @event.attendees.length > 0 %>
+          <h5>Attendees</h5>
+            <div class='attendees'>
+              <ul>
+              <% @event.attendees.each do |attendee|%>
+                <div class="chip">
+                  <%= image_tag attendee.photo.url(:medium), alt: attendee.name %>
+                  <%= link_to attendee.name, user_path(attendee) %>
+                </div>
+                </br>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <!-- END ATTENDEES DIV -->
+
+        <% if current_user === nil %>
+        <% elsif current_user == @event.owner || current_user.admin %>
+          <div>
+            <%= link_to event_path(@event), method: :delete, class: 'toggle show',
+              :data => {:confirm => 'Are you sure you want to delete this Event?'} do %>
+              <i class='material-icons'>delete</i>
+            <% end %>
+            <%= link_to edit_event_path(@event) do %>
+              <i class='material-icons'>edit_mode</i>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div>
+          <p>
+            <%= form_for @new_attendee do |f| %>
+              <%= f.hidden_field :event_id, :value => @event.id %>
+              <%= f.submit 'JOIN EVENT', class: 'waves-effect waves-light btn' %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- END EVENT INFORMATION -->
+  </div>
+  <div class='row'>
+    <p><%= @event.description %></p>
+  </div>
+
+<!-- END EVENT INFO -->
+
+
+<div>
+  <h3>Discussion</h3>
+
+  <!-- NEW COMMENT -->
+  <div class='card'>
+    <div class='card-content'>
+      <%= form_for @new_comment, :url => comments_path(@new_comment) do |f| %>
+        <%= f.hidden_field :parent_id, :value => @event.id %>
+        <%= f.hidden_field :parent_type, :value => 'Event' %>
+        <div class='input-field col s6'>
+          <label for='text_body'>Join in!</label>
+          <%= f.text_area :text_body, id: 'text_body', class: 'materialize-textarea' %><br/>
+        </div>
+        <p><%= f.submit 'Add Comment', class: 'waves-effect waves-light btn' %></p>
+      <% end %>
+    </div>
+  </div>
+  <!-- END NEW COMMENT -->
+
+  <% if @event.comments.length > 0 %>    
+    <% @event.comments.each do |comment|%>
+      <!-- COMMENT DIV -->
+      <div>
+        <% if comment.flagged === false %>
+        <div class='toggle show comment<%=comment.id%>'>
+          <div class='card'>
+            <div class='card-content'>
+              <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %></br>
+              <%= comment.created_at %>
+
+              <p><%= comment.text_body %></p>
+              
+              <% if current_user === nil %>
+              <% elsif current_user == comment.owner || current_user.admin %>
+                <div>
+                  <%= link_to comment_path(comment), method: :delete, class: 'toggle show',
+                    :data => {:confirm => 'Are you sure you want to delete this Comment?'} do %>
+                    <i class='material-icons'>delete</i>
+                  <% end %>
+                  <%= link_to '#', class: 'toggle edit show', id: comment.id do %>
+                    <i class='material-icons'>edit_mode</i>
+                  <% end %>
+                </div>
+              <% end %>
+              <!-- flag comment -->
+              <p>
+                <%= form_for comment do |f| %>
+                  <%= f.hidden_field :flagged, :value => true %>
+                  <%= f.button :submit, class: 'waves-effect waves-light btn',
+                        :data => {:confirm => 'Are you sure you want to FLAG this Comment?'} do %>
+                    <i class='material-icons'>report_problem</i>
+                  <% end %>
+                <% end %>
+              </p>
+              <!-- end flag comment -->
+            </div>
+          </div>
+        </div>
+
+        <div class='toggle hide comment<%=comment.id%>'>
+          <%= form_for comment do |f| %>
+            <div class='card'>
+              <div class='card-content'>
+                <div class='input-field col s6'>
+                  <label for='text_body'>Comment</label>
+                  <%= f.text_area :text_body, id: 'text_body', class: 'active materialize-textarea' %><br/>
+                </div>
+
+                <div>
+                  <p><%= link_to 'Cancel', :back, class: 'waves-effect waves-light btn' %></p></br>
+                  <p><%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <% else %>
+        <div class='card'>
+          <div class='card-content'>
+            <p>This Comment has been flagged for moderation.</p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <!-- END COMMENT DIV -->
+    <% end %>
+  <% end %>
+  
+</div>
