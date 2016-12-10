@@ -1,5 +1,40 @@
-<div class="row flex-x">
-  <div class="col l8 box-a">
+<div class="row">
+
+  <!-- USER PROFILE -->
+  <div class="col s12 push-m6 m6 push-l8 l4">
+
+    <!-- USER PROFILE INFO -->
+    <div id="aside">
+      <div class="center-info">
+        <h3><%= @user.name %></h3>
+        <div class="divider"></div>
+        <div class="card profile_card">
+          <div class="card-image">
+            <%= image_tag @user.photo.url(:medium) %>
+          </div>
+          <div class="card-content">
+            <p>
+              Neighborhood: <%= @user.neighborhood %></br>
+              E-mail: <%= @user.email %></br>
+            </p>
+          </div>
+          <% if current_user === nil %>
+          <% elsif current_user === @user || current_user.admin %>
+            <div class="card-action center">
+              <p><%= link_to 'Edit Profile', edit_user_path(@user), class: 'waves-effect waves-light btn' %></p>
+              <p><%= link_to 'Delete Profile', user_path(@user), method: :delete, class: 'waves-effect waves-light btn' %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- END USER PROFILE INFO -->
+
+  </div>
+  <!-- END USER PROFILE -->
+
+  <!-- USER CONTENT -->
+  <div class="col s12 pull-m6 m6 pull-l4 l8">
 
     <!-- EVENTS ATTENDING DIV -->
     <div>
@@ -97,33 +132,6 @@
     <!-- END COMMENTS DIV -->
 
   </div>
+  <!-- END USER CONTENT -->
 
-  <div class="col l4 box-b">
-
-    <!-- USER PROFILE INFO -->
-    <div id="aside">
-      <h3><%= @user.name %></h3>
-      <div class="divider"></div>
-      <div class="card profile_card">
-        <div class="card-image">
-          <%= image_tag @user.photo.url(:medium) %>
-        </div>
-        <div class="card-content">
-          <p>
-            Neighborhood: <%= @user.neighborhood %></br>
-            E-mail: <%= @user.email %></br>
-          </p>
-        </div>
-        <% if current_user === nil %>
-        <% elsif current_user === @user || current_user.admin %>
-          <div class="card-action center">
-            <p><%= link_to 'Edit Profile', edit_user_path(@user), class: 'waves-effect waves-light btn' %></p>
-            <p><%= link_to 'Delete Profile', user_path(@user), method: :delete, class: 'waves-effect waves-light btn' %></p>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <!-- USER PROFILE INFO -->
-
-  </div>
 </div>
