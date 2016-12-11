@@ -1,0 +1,45 @@
+<div class="card">
+  <%= form_for(@event, multipart: true) do |f| %>
+
+  <div class="container">
+    <div class="card-content">
+      <div class='input-field col s6'>
+        <label for='title'>Event Title</label>
+        <%= f.text_field :name %><br/>
+      </div>
+      <div class='input-field col s6'>
+        <label for='location'>Location</label>
+        <%= f.text_field :location, id: 'geo-input' %><br/>
+      </div>
+      <div class='input-field col s6'>
+        <label for='event_date'>Event Date</label>
+        <%= f.date_field :event_date, class: 'active datepicker' %><br/>
+      </div>
+      <div class='input-field col s6'>
+        <label class='active' for='event_time'>Event Time</label>
+        <%= f.time_field :event_time, id: 'timepicker', class: 'timepicker active' %><br/>
+      </div>
+      <div class='input-field col s6'>
+        <label for='description'>Description</label>
+        <%= f.text_area :description, id: 'description', class: 'active materialize-textarea' %><br/>
+      </div>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Event Image</span>
+          <%= f.file_field :photo %>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+
+      <div class='card-action'>
+        <%= link_to 'Cancel', posts_path, class: 'waves-effect waves-light btn right' %>
+        <%= f.submit 'Save Changes', class: 'waves-effect waves-light btn' %>
+      </div>
+      
+    </div>
+  </div>
+
+  <% end %>
+</div>
