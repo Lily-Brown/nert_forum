@@ -36,6 +36,7 @@ gem 'materialize-sass'
 
 # Paper Clip
 gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk', '~> 2.3'
 
 # GeoCoder
 gem 'geocoder'
