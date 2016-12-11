@@ -27,8 +27,9 @@ Rails.application.configure do
 
   # S3 and paperclip
   config.paperclip_defaults = {
-    s3_host_name: 'nert-assets.s3.amazonaws.com', # Added 05:23 based on: https://github.com/thoughtbot/paperclip/issues/2222
+    # s3_host_name: 'nert-assets.s3.amazonaws.com', # Added 05:23 based on: https://github.com/thoughtbot/paperclip/issues/2222
     storage: :s3,
+    s3_protocol: :https,
     s3_credentials: {
       bucket: ENV.fetch('S3_BUCKET_NAME'),
       access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
