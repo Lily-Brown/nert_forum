@@ -87,7 +87,8 @@ a {
 }
 
 .event-image img {
-  height: 100%; 
+  width: 100%; 
+  max-width: 520px;
   padding-top: 1%;
 }
 
@@ -107,6 +108,19 @@ a {
 .unflag {
   position: relative;
   top: -25px;
+}
+
+.flag-btn {
+  background: white;
+  border-style: none;
+}
+
+.flag-btn i{
+  color: #DF130F;
+}
+
+.flag-btn i:hover{
+  color: #DF595C;
 }
 
 .moderate {
