@@ -1,0 +1,148 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require clockpicker
+ */
+
+@import "materialize";
+
+$clockpicker-picker-box-background: white;
+$clockpicker-primary-color: white;
+$clockpicker-tick-background-color: white;
+$clockpicker-tick-background-color-active: white;
+$clockpicker-canvas-bearing-fill: green;
+$clockpicker-canvas-fg-fill: green;
+$clockpicker-canvas-bg-fill: green;
+$clockpicker-canvas-bg-stroke: green;
+$clockpicker-button-color: green;
+$clockpicker-button-background-color: green;
+
+.hide {
+  display: none;
+}
+
+.cards > .card {
+  display: inline-block; 
+}
+
+.bigger-font {
+  font-size: 150%;
+}
+
+.btn {
+  background-color: green;
+}
+
+a {
+  color: green;
+}
+
+.logo-pad{
+  left: 2%;
+  top: 1vh;
+  border-radius: 10px;
+}
+
+.logo-pad > img{
+  border-radius: 10px;
+}
+
+.hide-on-med-and-down.left-nav-pad {
+  padding-left: 8%;
+}
+
+.flash-success, .flash-error, #error_explanation{
+  border: 1px solid black;
+  text-align: center;
+}
+
+.flash-success {
+  background-color: #7EFF78;
+  color: green;
+}
+
+.flash-error, #error_explanation {
+  background-color: #FF939E;
+  color: red;
+}
+
+.crop {
+  width: 100px !important;
+  height: 190px !important;
+  object-fit: cover; 
+}
+
+.profile_card {
+  width: 300px;
+}
+
+.event-image img {
+  width: 100%; 
+  max-width: 520px;
+  padding-top: 1%;
+}
+
+.event-info {
+  padding-top: 5%;
+}
+
+.attendees {
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.edit_btn i {
+  width: 24px;
+}
+
+.unflag {
+  position: relative;
+  top: -25px;
+}
+
+.flag-btn {
+  background: white;
+  border-style: none;
+}
+
+.flag-btn i{
+  color: #DF130F;
+}
+
+.flag-btn i:hover{
+  color: #DF595C;
+}
+
+.moderate {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.event-card-image {
+  background-color: #000000;
+}
+
+.event-card-image img {
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 600px) {
+
+  h3 {
+    text-align: center;
+  }
+
+  .profile_card{
+    margin: 0 auto;
+  }
+}
