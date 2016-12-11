@@ -126,7 +126,7 @@
           <% elsif current_user.admin %>
 
               <div class='event hide'>
-                <%= form_for Event.new do |f| %>
+                <%= form_for(Event.new, multipart: true) do |f| %>
 
                 <div class='card'>
                   <div class='card-action'>
