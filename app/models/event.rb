@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
-  has_attached_file :photo, styles: { medium: '535x300#', thumb: '180x100#' }, default_url: ':style/event_default.png',
-    storage: :s3,
-    s3_protocol: :https #specify the protocol as https
+  has_attached_file :photo, styles: { medium: '535x300#', thumb: '180x100#' }, default_url: ':style/event_default.png'
+    # storage: :s3, # REMOVED 05:26 to get localhost to work 
+    # s3_protocol: :https #specify the protocol as https # http://stackoverflow.com/questions/37573441/how-to-use-paperclip-to-retrieve-an-image-over-https-using-ror
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   validate :event_date_cannot_be_in_the_past
 
