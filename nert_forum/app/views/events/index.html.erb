@@ -1,0 +1,31 @@
+<div>
+  <h2>Upcoming Events</h2>
+
+  <!-- UPCOMING EVENTS -->
+  <div class="row cards">
+    <% @events.each do |event|%>
+    <div class="col s12 m6">
+      <div class="card hoverable event_card" id=<%=event.id%>>
+        <div class="card-image event-card-image">
+          <%= image_tag event.photo.url(:medium) %>
+          <span class="card-title"> <%= event.name%> </span>
+        </div>
+        <div class="card-content">
+          <%= link_to event.location, 'http://maps.google.com/?q='+event.location %></br>
+          <strong><%= event.event_date.strftime("%b %d, %Y ") %> at 
+          <%= event.event_time.strftime("%I:%M%p") %></strong></br>
+          <%= truncate(event.description, length: 150) %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <!-- END UPCOMING EVENTS -->
+
+  <% if Event.where("event_date >= ?", Date.today).count > 2 %>
+    <div class='center'>
+      <p><%= link_to 'See Past Events'.upcase, past_events_path %></p>
+    </div>
+  <% end %>
+
+</div>
