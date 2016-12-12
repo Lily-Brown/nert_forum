@@ -116,11 +116,11 @@ a {
 }
 
 .flag-btn i{
-  color: #DF130F;
+  color: #48444B;
 }
 
 .flag-btn i:hover{
-  color: #DF595C;
+  color: #6E6874;
 }
 
 .moderate {
@@ -139,6 +139,13 @@ a {
 .collapsible-header {
   line-height: 1.5rem;
   padding: 1rem;
+}
+
+.icons {
+  height: 35px;
+}
+.icon-inline {
+  display: inline-block;
 }
 
 @media only screen and (max-width: 600px) {
