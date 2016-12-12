@@ -1,0 +1,50 @@
+<div>
+
+  <!-- UPCOMING EVENTS -->
+  <div class="row cards">
+    <% @events.each do |event|%>
+    <div class="col s12 m6">
+      <div class="card hoverable event_card" id=<%=event.id%>>
+        <div class="card-image event-card-image">
+          <%= image_tag event.photo.url(:medium) %>
+          <span class="card-title"> <%= event.name%> </span>
+        </div>
+        <div class="card-content">
+          <%= link_to event.location, 'http://maps.google.com/?q='+event.location %></br>
+          <strong><%= event.event_date.strftime("%b %d, %Y ") %> at
+          <%= event.event_time.strftime("%I:%M%p") %></strong></br>
+          <%= truncate(event.description, length: 150) %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <!-- END UPCOMING EVENTS -->
+
+  <% if Event.where("event_date >= ?", Date.today).count > 2 %>
+    <div class='center'>
+      <p><%= link_to 'More Upcoming Events'.upcase, events_path %></p>
+    </div>
+  <% end %>
+
+  <!-- RECENT POSTS -->
+  <ul class="collapsible popout" data-collapsible="accordion">
+  <% @posts.each do |post|%>
+    <li>
+      <div class="collapsible-header"><i class="material-icons green-text text-darken-3">library_books</i>
+        <h5><%= link_to post.title, post_path(post) %></h5>
+        <%= link_to post.owner.name, user_path(post.owner) %>: <%= post.owner.neighborhood %></br>
+        <% if post.created_at === post.updated_at %>
+          <%= post.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("Posted At: %m/%d/%Y %I:%M%p %Z") %>
+        <% else %>
+          <%= post.updated_at.in_time_zone("Pacific Time (US & Canada)").strftime("Updated At: %m/%d/%Y %I:%M%p %Z") %>
+        <% end %>
+      </div>
+      <div class="collapsible-body">
+        <p><%= truncate(post.text_body, length: 295) %> <%= link_to 'Read More', post_path(post) %></p>
+      </div>
+    </li>
+  <% end %>
+  <!-- END RECENT POSTS -->
+
+</div>
