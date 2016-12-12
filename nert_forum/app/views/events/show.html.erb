@@ -107,9 +107,13 @@
                 <% end %>
               </p>
               <!-- end flag comment -->
-              <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %></br>
-              <%= comment.created_at %>
-
+              <%= link_to comment.owner.name, user_path(comment.owner) %>: <%= comment.owner.neighborhood %>
+              <% if comment.created_at == comment.updated_at %>
+                </br><%= comment.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("Posted At: %m/%d/%Y %I:%M%p %Z") %>
+              <% else %>
+                </br>
+                <%= comment.updated_at.in_time_zone("Pacific Time (US & Canada)").strftime("Updated At: %m/%d/%Y %I:%M%p %Z") %>
+              <% end %>
               <p><%= comment.text_body %></p>
               
               <% if current_user === nil %>
@@ -133,7 +137,7 @@
             <div class='card'>
               <div class='card-content'>
                 <div class='input-field col s6'>
-                  <label for='text_body'>Comment</label>
+                  <label class='active' for='text_body'>Comment</label>
                   <%= f.text_area :text_body, id: 'text_body', class: 'active materialize-textarea' %><br/>
                 </div>
 
