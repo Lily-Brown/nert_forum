@@ -105,22 +105,22 @@
               <% end %>
               <p><%= comment.text_body %></p>
               
-                <div class='icons'>
+                <div class='inline-div'>
                   <% if current_user === nil %>
                   <% elsif current_user == comment.owner || current_user.admin %>
-                    <div class='icon-inline'>
+                    <div class='inline-element'>
                       <%= link_to comment_path(comment), method: :delete, class: 'toggle show',
                         :data => {:confirm => 'Are you sure you want to delete this Comment?'} do %>
                         <i class='material-icons'>delete</i>
                       <% end %>
                     </div>
-                    <div class='icon-inline'>
+                    <div class='inline-element'>
                       <%= link_to '#', class: 'toggle edit show', id: comment.id do %>
                         <i class='material-icons'>edit_mode</i>
                       <% end %>
                     </div>
                   <% end %>
-                    <div class='icon-inline right'>
+                    <div class='inline-element right'>
                     <!-- flag comment -->
                       <%= form_for comment do |f| %>
                         <%= f.hidden_field :flagged, :value => true %>
@@ -156,11 +156,17 @@
         <% else %>
         <div class='card'>
           <div class='card-content'>
-            <p>This Comment has been flagged for moderation.</p>
-            <%= form_for comment do |f| %>
-              <%= f.hidden_field :flagged, :value => false %></br>
-              <%= f.submit 'Unflag Comment', class: 'unflag waves-effect waves-light btn right' %>
-            <% end %>
+            <div class='inline-div'>
+              <div class='inline-element'>
+                <p>This Comment has been flagged for moderation.</p>
+              </div>
+              <div class='inline-element right'>
+                <%= form_for comment do |f| %>
+                  <%= f.hidden_field :flagged, :value => false %></br>
+                  <%= f.submit 'Unflag Comment', class: 'unflag waves-effect waves-light btn' %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         <% end %>
