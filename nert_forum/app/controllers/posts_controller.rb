@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :verify_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.reverse_order
+    @posts = Post.all.order('updated_at DESC')
     @events = Event.where("event_date >= ?", Date.today).order('event_date ASC').limit(2)
   end
 
